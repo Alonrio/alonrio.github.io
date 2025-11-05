@@ -80,6 +80,8 @@ footer {
     margin-top: 1.5rem;
     font-size: 0.8rem;
     color: #aaa;
+    border-radius: 16px;
+    background-color: #fff;
 }
 
 h2 {

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Message Anonyme</title>
+</head>
+<body>
+
+  <main>
+    <h1>Envoie-moi un message anonyme 💬</h1>
+    <p>Dis ce que tu veux, c’est 100% confidentiel.</p>
+
+    <form action="https://formsubmit.co/alonrio.mc@gmail.com" method="POST" id="anonymousForm">
+      <!-- Désactiver le captcha FormSubmit -->
+      <input type="hidden" name="_captcha" value="false">
+
+      <!-- Redirection après soumission (tu peux personnaliser le lien) -->
+      <input type="hidden" name="_next" value="https://alonrio.github.io/merci.html">
+
+      <textarea name="message" placeholder="Écris ton message ici..." required></textarea>
+      <button type="submit">Envoyer anonymement</button>
+    </form>
+
+    <div class="success-message" id="successMessage">
+      Merci pour ton message
+    </div>
+
+    <footer>Aucune donnée personnelle n’est enregistrée.</footer>
+</main>
+</body>
+</html>

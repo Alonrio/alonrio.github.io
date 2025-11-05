@@ -79,12 +79,13 @@ button:hover {
 footer {
     margin-top: 1.5rem;
     font-size: 0.8rem;
-    color: #aaa;
+    color: #666;
     border-radius: 16px;
-    background-color: #fff;
+    padding: 2rem;
+    background-color: #ffffff;
 }
 
-h2 {
+section h2 {
     background-color: #e8f5e9;
     border: 1px solid #c8e6c9;
     color: #7d2e2e;

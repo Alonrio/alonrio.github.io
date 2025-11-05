@@ -22,25 +22,7 @@
       <textarea name="message" placeholder="Écris ton message ici..." required></textarea>
       <button type="submit">Envoyer anonymement</button>
     </form>
-
-    <div class="success-message" id="successMessage">
-      Merci pour ton message
-    </div>
-
     <footer>Aucune donnée personnelle n’est enregistrée.</footer>
 </main>
-
-  <script>
-    // Affiche un petit message de succès après envoi
-    const form = document.getElementById('anonymousForm');
-    const successMsg = document.getElementById('successMessage');
-
-    form.addEventListener('submit', function () {
-      setTimeout(() => {
-        successMsg.style.display = 'block';
-        form.reset();
-      }, 500);
-    });
-  </script>
 </body>
 </html>

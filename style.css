@@ -32,6 +32,15 @@ h1 {
     color: #111;
 }
 
+h4 {
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    color: #7d2e2e;
+    background-color: #2e7d32;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
 p{
     font-size: 0.95rem;
     color: #666;
@@ -85,11 +94,3 @@ footer {
     background-color: #ffffff;
 }
 
-h4 {
-    background-color: #e8f5e9;
-    border: 1px solid #c8e6c9;
-    color: #7d2e2e;
-    background-color: #2e7d32;
-    border-radius: 10px;
-    margin-top: 1rem;
-}

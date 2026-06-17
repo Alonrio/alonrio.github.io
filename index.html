@@ -1,31 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <title>Message Anonyme</title>
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alonrio Games</title>
+  <link rel="stylesheet" href="index.css">
+</head> 
 <body>
-
-  <main>
-    <h1>Envoie-moi un message anonyme 💬</h1>
-    <p>Dis ce que tu veux, c’est 100% confidentiel.</p>
-
-    <form action="https://formsubmit.co/alonrio.mc@gmail.com" method="POST" id="anonymousForm">
-      <!-- Désactiver le captcha FormSubmit -->
-      <input type="hidden" name="_captcha" value="false">
-
-      <!-- Redirection après soumission (tu peux personnaliser le lien) -->
-      <input type="hidden" name="_next" value="https://alonrio.github.io/merci.html">
-
-      <textarea name="message" placeholder="Écris ton message ici..." required></textarea>
-      <button type="submit">Envoyer anonymement</button>
-    </form>
-    
-</main>
-<footer>
-    Aucune donnée personnelle n’est enregistrée.
-</footer>
+    <header>
+        <div class="header-center">
+            <h1>Les jeux d'Alonrio</h1>
+            <p>plein de jeux à faire en soirée</p>
+        </div>
+    </header>
+    <main>
+        <section>
+            <h2><img src="./image/avertissement-triangulaire-2.png"> - WARNING - <img src="./image/avertissement-triangulaire-2.png"> </h2>
+            <br>
+            <p>Ce site peut contenir des jeux (ou des questions/options dans les jeux) destinés à un public mature.
+                Si vous êtes en dessous de l'âge de la majorité dans votre pays (par exemple 18 ans en France), il vous est déconseillé de jouer.</p>
+            <br>
+            <h4>En continuant, Vous confirmez être un public averti</h4>
+        </section>
+        <article class="article-left">
+            <a href="AouV/AouV.html">
+                <h4>Action ou Vérité</h4>
+                <img src="image/commentaires-question.png">
+            </a>
+        </article>
+        <article class="article-right">
+            <a href="/undercover/undercover.html">
+                <h4>UnderCover</h4>
+                <img src="image/undercover_index.png">
+            </a>
+        </article>
+        <article class="article-left">
+            <a href="/JeNaiJamais/jamais.html">
+                <h4>Je n'ai jamais...</h4>
+                <img src="image/levres-silencieuses.png">
+            </a>
+        </article>
+        <article class="article-right">
+            <a href="./QuiPourrait/pourrait.html">
+                <h4>Qui pourrait...</h4>
+                <img src="image/point-arriere-de-la-main-a-droite.png">
+            </a>
+        </article>
+        <article class="temp">
+            <a href="#">
+                <h4>Coming Soon</h4>
+                <img src="image/fin-de-sablier.png">
+            </a>
+        </article>
+        <article class="temp">
+            <a href="#">
+                <h4>Coming Soon</h4>
+                <img src="image/fin-de-sablier.png">
+            </a>
+        </article>
+    </main>
+    <footer>
+        <div class = "footer-left">
+            <p>WebMaster : Pierr0tW</p>
+            <p>Icones : Flaticon</p>
+        </div>
+        <div class = "footer-right"><p>2026-2027</p></div>
+    </footer>
 </body>
-</html>

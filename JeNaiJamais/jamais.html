@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Je n'ai jamais</title>
+  <link rel="stylesheet" href="jamais.css">
+</head>
+<body>
+  
+
+  <header>
+    <div class="home">
+      <a href = "../index.html"><img src="image/partir.png"></a>
+      <p>Retour à l'accueil</p>
+    </div>
+    <div class="header-center">
+      <h1>Je n'ai jamais</h1>
+      <p>Des situations apparaissent si tu l'as déja fait tu as un gage (ou bois)</p>
+    </div>
+  </header>
+
+<main>
+
+  <!--  ajout joueurs  -->
+  <div id="screen-setup">
+    <section id="warning">
+      <h2><img src="./image/avertissement-triangulaire-2.png"> - WARNING - <img src="./image/avertissement-triangulaire-2.png"> </h2>
+      <br>
+      <p>Des questions sensibles peuvent apparaître (politique ou autres sujets). Vous pouvez passer les questions si vous le souhaitez. Nous ne sommes pas responsables d'éventuelles fins d'amitié ou autres conséquences.</p>
+      <br>
+      <h4>En continuant, Vous confirmez être un public averti</h4>
+  </section>
+    <div class = "card">
+      <div class = "card-title">Ajouter des joueurs</div>
+      <div class = "input-row">
+        <input type = "text" id = "player-input" placeholder = "nom du joueurs" maxlength = "20" />
+      </div>
+      <div id="player-list">
+        <span class="empty-hint">Aucun joueur ajouté…</span>
+      </div>
+    </div>
+
+    <div class="card switch-card">
+      <div class="switch-row">
+        <div>
+          <div class="card-title" style="margin-bottom:0.2rem">Spicy</div>
+          <p class="switch-desc">Ajoute une chance de tomber sur une question spicy (~10%)</p>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="switch-bois">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="btn-start" onclick="startGame()" disabled>
+      Lancer la partie
+    </button>
+
+  </div>
+
+  <!-- Ecran jeu -->
+  <div id="screen-game">
+
+    <div class="turn-header">
+      <div class = "turn-title">
+        <div class="turn-label">tour de :</div>
+        <div class="turn-player" id="current-player">—</div>
+      </div>
+      <span class="type-badge" id="type-badge">Situation</span>
+    </div>
+
+    <div class="question-card">
+      <h2>Je n'ai jamais</h2>
+      <p id="question-text">Appuie sur Suivant !</p>
+    </div>
+
+    <div class="footer-bar">
+      <div class="footer-title">Joueurs</div>
+      <div class="players-row" id="players-row"></div>
+    </div>
+
+    <button class="btn-next" onclick="nextTurn()">Suivant →</button>
+    <button class="btn-quit" onclick="quitGame()">Changer les joueurs</button>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class = "footer-left">
+    <p>WebMaster : Pierr0tW</p>
+    <p>Icones : Flaticon</p>
+  </div>
+  <div class = "footer-right"><p>2026-2027</p></div>
+</footer>
+
+<script src="jamais.js"></script>
+
+</body>
+</html>

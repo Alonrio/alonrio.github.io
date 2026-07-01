@@ -83,7 +83,7 @@ const ROLES = {
     desc: "C'est un Boomer, il a leur sagesse ! Et il peut donc vivre 2 fois.",
     wakesAtNight: false,
     // Flaticon : icône vieux sage / personnage âgé
-    icon: () => `<img src="image/booma" alt="Icône OugaBooma (sage boomer)" class="role-icon-img">`
+    icon: () => `<img src="image/booma.png" alt="Icône OugaBooma (sage boomer)" class="role-icon-img">`
   },
   ougabounta: {
     nom: "OugaBounta",
@@ -92,7 +92,7 @@ const ROLES = {
     desc: "Comme un Bounty personne ne l'aime... Mais il ne peut pas se faire voter pour sortir de la grotte et ses voix comptent double (ne peut pas être élu chef Bouga) !",
     wakesAtNight: false,
     // Flaticon : icône paria / personnage isolé
-    icon: () => `<img src="image/chase" alt="Icône OugaBounta (paria du clan)" class="role-icon-img">`
+    icon: () => `<img src="image/chase.png" alt="Icône OugaBounta (paria du clan)" class="role-icon-img">`
   },
   ougabanana: {
     nom: "OugaBanana",
@@ -101,7 +101,7 @@ const ROLES = {
     desc: "Il n'est pas comme les autres, il aime les bananes. Il veut tuer tous les OugaBooga car c'est le seul à aimer les bananes.",
     wakesAtNight: true,
     // Flaticon : icône banane / fruit
-    icon: () => `<img src="image/banana" alt="Icône OugaBanana (banane)" class="role-icon-img">`
+    icon: () => `<img src="image/banana.png" alt="Icône OugaBanana (banane)" class="role-icon-img">`
   },
   petitbouga: {
     nom: "Petit Bouga en Plus",
@@ -119,7 +119,7 @@ const ROLES = {
     desc: "Il tombe amoureux d'une personne au hasard, seuls lui et son amoureux sont au courant et leurs rôles sont révélés. Mais si l'un meurt, l'autre se frappera trop fort avec une massue Bouga et mourra.",
     wakesAtNight: false,
     // Flaticon : icône cœur / amour
-    icon: () => `<img src="image/coeur" alt="Icône Bougamoureux (cœur amour)" class="role-icon-img">`
+    icon: () => `<img src="image/coeur.png" alt="Icône Bougamoureux (cœur amour)" class="role-icon-img">`
   },
   bougamoutar: {
     nom: "Le BougaMoutar",
@@ -128,7 +128,7 @@ const ROLES = {
     desc: "Il est jeune et suit l'exemple d'un modèle. Si ce modèle meurt, il devient méchant et s'infiltre avec les autres Bouga.",
     wakesAtNight: false,
     // Flaticon : icône apprenti / jeune disciple
-    icon: () => `<img src="image/moutar" alt="Icône BougaMoutar (jeune disciple)" class="role-icon-img">`
+    icon: () => `<img src="image/moutar.png" alt="Icône BougaMoutar (jeune disciple)" class="role-icon-img">`
   },
   boumata: {
     nom: "Le Bouga Infiltré de la grotte Boumata",

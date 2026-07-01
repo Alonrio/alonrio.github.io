@@ -238,9 +238,8 @@ const actionListe = [
 
 const veriteSpicyListe = [
   "Qui ici tu trouves le plus attirant(e) ?",
-  "T'as déjà eu une pensée coquine sur quelqu'un du groupe ?",
-  "Quelle est ta position préférée ?",
-  "Quel est ton endroit le plus insolite où tu as… tu sais quoi ?",
+  "T'as déjà eu une arrière pensée sur quelqu'un du groupe ?",
+  "Quel est ton endroit le plus insolite où tu as fait l'amour ?",
   "T'as déjà dragué quelqu'un en couple ?",
   "Décris le meilleur baiser que tu aies jamais eu",
   "Qu'est-ce qui t'excite le plus chez quelqu'un ?",
@@ -251,32 +250,66 @@ const veriteSpicyListe = [
   "Avec qui ici tu passerais une nuit si tu devais absolument choisir ?",
   "Décris ton type physique idéal",
   "Quel est le compliment le plus osé qu'on t'ait fait ?",
-  "T'as déjà envoyé un message au mauvais destinataire et regretté ta vie ?",
   "Raconte ton expérience la plus embarrassante en rapport avec le sexe",
   "T'as déjà eu un crush sur un(e) prof ?",
-  "Combien de fois par semaine en moyenne… tu vois ce qu'on veut dire",
+  "Combien de fois par semaine en moyenne tu te PIGNOUF",
   "Quel est le truc le plus coquin que tu aies jamais fait en public ?",
-  "Classer les personnes ici par attirance — si tu DEVAIS le faire"
+  "Classe les personnes ici par attirance",
+  "Sur quel musique tu pourrais faire l'amour",
+  "Raconte ta première PIGNOUF",
+  "C'était quoi la dernière vidéo P que tu as regardée ?",
+  "Pense tu que la personne à ta droite est un bon coup ?",
+  "Pense tu que la personne à ta gauche est un bon coup ?",
+  "Pour combien tu accepterais de coucher avec la personne à ta droite ?",
+  "Pour combien tu accepterais de coucher avec la personne à ta gauche ?",
+  "Décris ton style de meuf ou mec",
+
 ];
 
 const actionSpicyListe = [
   "Fais un massage de 30 secondes à la personne de ton choix",
-  "Chuchote quelque chose de coquin à l'oreille de la personne à ta gauche",
-  "Fais le regard le plus séducteur possible à la personne en face de toi",
+  "Chuchote quelque chose de génant à l'oreille de la personne à ta gauche",
+  "Chuchote quelque chose de génant à l'oreille de la personne à ta droite",
+  "Fais le regard le plus séducteur possible à la personne en face de toi ou à ta gauche",
+  "Fais le regard le plus séducteur possible à la personne en face de toi ou à ta droite",
   "Dis le prénom de quelqu'un ici de la manière la plus sensuelle possible",
   "Décris en détail ce que tu ferais si tu avais une soirée seul(e) avec la personne à ta droite",
+  "Décris en détail ce que tu ferais si tu avais une soirée seul(e) avec la personne à ta gauche",
   "Fais un câlin de 15 secondes à la personne de ton choix",
+  "Fais un câlin de 15 secondes à la personne à ta gauche",
+  "Fais un câlin de 15 secondes à la personne à ta droite",
+  "Fais un câlin de 15 secondes à la personne en face de toi ou à ta gauche",
   "Dis trois choses que tu trouves physiquement attirant chez quelqu'un dans cette pièce",
-  "Montre ton historique de recherche des 5 dernières minutes",
-  "Imite quelqu'un en train de séduire — le groupe juge si c'est convaincant",
-  "Envoie un GIF coquin (sans texto) à quelqu'un du groupe",
-  "Fais un clin d'œil irrésistible à chaque personne du groupe une par une",
-  "Chante un refrain de chanson romantique en regardant quelqu'un dans les yeux"
+  "Dis trois choses que tu trouves physiquement attirant sur la personne à ta gauche",
+  "Dis trois choses que tu trouves physiquement attirant sur la personne à ta droite",
+  "Dis trois choses que tu trouves physiquement attirant sur la personne en face de toi",
+  "Montre ton historique de recherche",
+  "Imite quelqu'un en train de séduire le groupe juge si c'est convaincant",
+  "Envoie un GIF coquin (sans texto) à quelqu'un",
+  "Chante un refrain de chanson paillarde en regardant quelqu'un dans les yeux",
+  "Pour combien tu accepterais de coucher avec la personne à ta droite",
+  "Pour combien tu accepterais de coucher avec la personne à ta gauche",
+  "As-tu déjà fantasmé sur la personne à ta gauche",
+  "As-tu déjà fantasmé sur la personne à ta droite",
+  "Qui est la dernière personne avec qui tu as flirté ?",
+  "Fais un bisous dans le cou de la personne à ta droite",
+  "Fais un bisous dans le cou de la personne à ta gauche",
+  "Fais un bisous dans le cou de la personne en face de toi",
+
 ];
 
 // ── Listes Ultra Spicy (pour couples) ──────────────────────────
 
 const veriteUltraSpicyListe = [
+  "Quelle est ta position préférée ?",
+  "Penses tu encore à ton ex ?",
+  "As-tu déja fouillé dans le téléphone de ton ou ta partenaire ?",
+  "Est-ce que tu regrettes quelque chose auprès de ton/ta partenaire ?",
+  "Est-ce que tu regrettes avoir dit quelque chose à ton/ta partenaire ?",
+  "Avec lequel ou laquelle de tes ex tu serais pret(e) de recoucher avec ?",
+  "T'as déjà fait semblant d'avoir un orgasme avec ton/ta partenaire ?",
+  "Qu'est-ce qui t'excite le plus chez ton/ta partenaire ?",
+  "Quel est ton plus grand kink que tu n'assumes pas à ta partenaire ?",
   "Quelle est la chose la plus osée que tu aies faite en couple ?",
   "Décris la soirée la plus torride que tu aies vécue avec ton/ta partenaire",
   "Quel est ton fantasme que tu n'as jamais osé demander à ton/ta partenaire ?",
@@ -297,7 +330,8 @@ const actionUltraSpicyListe = [
   "Donne un vrai massage de 1 minute à ton/ta partenaire",
   "Murmure à l'oreille de ton/ta partenaire ce que tu voudrais faire plus tard ce soir",
   "Fais à ton/ta partenaire le regard le plus séducteur que tu puisses",
-  "Échange un objet intime (bracelet, bague) avec ton/ta partenaire pour le reste de la soirée"
+  "Échange un objet perso (bracelet, bague) avec ton/ta partenaire pour le reste de la soirée",
+
 ];
 
 // ════════════════════════════════════════════════════════════════
@@ -376,16 +410,20 @@ function changePct(type, delta){
     if (reste > 0){
       // On veut augmenter les autres (réduire soft) → bloquer si plus de place
       const available = 100 - pctBois - pctSpicy - pctUltraSpicy;
-      if (available <= 0) return;
+      if (available <= 0)return;
     }
     // Ici on redistribue sur ultra puis spicy puis bois
     let r = reste;
     if (r > 0){
       const add = Math.min(r, 80 - pctUltraSpicy); pctUltraSpicy = clamp(pctUltraSpicy + add, 0, 80); r -= add;
-    } else if (r < 0){
+    }else if (r < 0){
       const sub = Math.min(-r, pctUltraSpicy); pctUltraSpicy -= sub; r += sub;
-      if (r < 0){ const sub2 = Math.min(-r, pctSpicy); pctSpicy -= sub2; r += sub2; }
-      if (r < 0){ pctBois = Math.max(0, pctBois + r); }
+      if (r < 0){ 
+        const sub2 = Math.min(-r, pctSpicy); pctSpicy -= sub2; r += sub2; 
+      }
+      if (r < 0){ 
+        pctBois = Math.max(0, pctBois + r); 
+      }
     }
   } else if (type === 'bois'){
     const newVal = clamp(pctBois + delta, 0, 90);

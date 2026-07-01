@@ -923,7 +923,7 @@ function showMorningRecap(revives) {
   if (checkVictory()) return;
 }
 
-function goToParole() {
+function goToParole(){
   if (checkVictory()) return;
   // Nuit 1 : pas encore de Chef Bouga, on organise l'election avant le tour de parole
   if (nightNumber === 1 && maire === null) {
@@ -944,14 +944,14 @@ function goToParole() {
 let paroleOrdre = [];
 let paroleIndex = 0;
 
-function beginParole() {
+function beginParole(){
   paroleOrdre = shuffle(vivants().map(j => j.nom));
   paroleIndex = 0;
   showScreen('screen-parole');
   renderParole();
 }
 
-function renderParole() {
+function renderParole(){
   const chips = document.getElementById('parole-chips');
   chips.innerHTML = paroleOrdre.map((nom, i) => {
     return chipJoueur(nom, i === paroleIndex);
@@ -959,9 +959,9 @@ function renderParole() {
   document.getElementById('parole-name').textContent = paroleOrdre[paroleIndex] || '-';
 }
 
-function nextParole() {
+function nextParole(){
   paroleIndex++;
-  if (paroleIndex >= paroleOrdre.length) {
+  if (paroleIndex >= paroleOrdre.length){
     beginVote();
     return;
   }
@@ -972,7 +972,7 @@ function nextParole() {
    VOTE & ÉLIMINATION
    ════════════════════════════════════════════════════════════ */
 
-function beginVote() {
+function beginVote(){
   showScreen('screen-vote');
   document.getElementById('vote-result').style.display = 'none';
   document.getElementById('vote-result').innerHTML = '';
@@ -981,7 +981,7 @@ function beginVote() {
   renderVotePlayers();
 }
 
-function renderVotePlayers() {
+function renderVotePlayers(){
   const container = document.getElementById('vote-players');
   // En phase de vote normal, tout le monde peut etre vote (y compris OugaBounta)
   // Le Chef Bouga a un badge visuel
@@ -993,7 +993,7 @@ function renderVotePlayers() {
   }).join('');
 }
 
-function voterContre(nom) {
+function voterContre(nom){
   const j = joueurByNom(nom);
   if (!j) return;
 
@@ -1019,7 +1019,7 @@ function voterContre(nom) {
 
   // Si le Chef Bouga vote pour quelqu'un : son vote est decisif en cas d'egalite.
   // Ici le MJ a deja recueilli les votes a main levee. On lui demande si c'est une egalite.
-  if (maire && vivants().length > 2) {
+  if (maire && vivants().length > 2){
     // Proposer au MJ : egalite ou pas ?
     const resultEl = document.getElementById('vote-result');
     resultEl.style.display = 'flex';
@@ -1046,7 +1046,7 @@ function voterContre(nom) {
 }
 
 // Le Chef Bouga vote en cas d'egalite : il choisit parmi les joueurs ex-aequo
-function voteChefBouga(nomPropose) {
+function voteChefBouga(nomPropose){
   showScreen('screen-vote');
   document.getElementById('vote-result').style.display = 'none';
   document.getElementById('vote-result').innerHTML = '';
@@ -1054,14 +1054,14 @@ function voteChefBouga(nomPropose) {
   document.querySelector('#screen-vote .vote-sub').textContent = 'Egalite ! Le Chef Bouga designe le joueur a eliminer. Son vote est decisif.';
   const container = document.getElementById('vote-players');
   // Le Chef Bouga choisit parmi tous les vivants sauf lui-meme (et OugaBounta si revele)
-  container.innerHTML = vivants().map(function(j) {
+  container.innerHTML = vivants().map(function(j){
     if (j.nom === maire) return '';
     if (j.role === 'ougabounta' && ougabountaRevele) return '';
     return '<button class="vote-btn" onclick="confirmerElimination(' + "'" + escapeAttr(j.nom) + "'" + ')">' + escapeHtml(j.nom) + '</button>';
   }).join('');
 }
 
-function confirmerElimination(nom) {
+function confirmerElimination(nom){
   const j = joueurByNom(nom);
   if (!j) return;
 
@@ -1070,8 +1070,8 @@ function confirmerElimination(nom) {
   let deathLog = [];
   killPlayer(nom, deathLog, 'Elimine par le vote du village (Jour ' + nightNumber + ')');
 
-  traiterLanceEnAttente(deathLog, function(finalDeathLog) {
-    if (estChefBouga && vivants().length > 0) {
+  traiterLanceEnAttente(deathLog, function(finalDeathLog){
+    if (estChefBouga && vivants().length > 0){
       // Chef Bouga elimine par vote : il transmet son titre avant le resultat
       afficherResultatVote(nom, j, finalDeathLog); // affiche d'abord le resultat
       // puis propose la transmission
@@ -1086,7 +1086,7 @@ function confirmerElimination(nom) {
       btn.style.marginTop = '1rem';
       btn.onclick = function() { ouvrirTransmission(finalDeathLog); };
       resultEl.appendChild(btn);
-    } else {
+    }else{
       if (estChefBouga) maire = null;
       afficherResultatVote(nom, j, finalDeathLog);
     }
@@ -1094,9 +1094,9 @@ function confirmerElimination(nom) {
 }
 
 // Alias pour compatibilite (utilise dans afficherResultatVote pour le bouton continuer)
-function eliminerJoueur(nom) { voterContre(nom); }
+function eliminerJoueur(nom){ voterContre(nom); }
 
-function ouvrirTransmission() {
+function ouvrirTransmission(){
   maire = null;
   showScreen('screen-vote');
   document.getElementById('vote-result').style.display = 'none';
@@ -1113,7 +1113,7 @@ function ouvrirTransmission() {
   }).join('');
 }
 
-function recevoirTitre(nom) {
+function recevoirTitre(nom){
   const j = joueurByNom(nom);
   if (j && j.role === 'ougabounta' && ougabountaRevele) return;
   if (j && j.role === 'ougabounta') {
@@ -1129,7 +1129,7 @@ function recevoirTitre(nom) {
   setTimeout(function() { beginNight(); }, 900);
 }
 
-function afficherResultatVote(nom, j, deathLog) {
+function afficherResultatVote(nom, j, deathLog){
   showScreen('screen-vote');
   const resultArea = document.getElementById('vote-result');
   resultArea.style.display = 'flex';
@@ -1137,7 +1137,7 @@ function afficherResultatVote(nom, j, deathLog) {
 
   deathLog.forEach(entry => {
     if (entry.startsWith(nom)) return; // déjà annoncé ci-dessus
-    if (entry.startsWith('(')) {
+    if (entry.startsWith('(')){
       html += `<div class="result-block warning">${escapeHtml(entry)}</div>`;
       return;
     }
@@ -1164,14 +1164,14 @@ function afficherResultatVote(nom, j, deathLog) {
    CONDITIONS DE VICTOIRE
    ════════════════════════════════════════════════════════════ */
 
-function checkVictory() {
+function checkVictory(){
   const v = vivants();
   const nbInfiltres = v.filter(estInfiltre).length;
   const solos = v.filter(estSolo);
   const nbBooga = v.filter(j => !estInfiltre(j) && !estSolo(j)).length;
 
   // Un rôle solo (OugaBanana, Boumata) gagne s'il est le dernier survivant
-  if (solos.length === 1 && v.length === 1) {
+  if (solos.length === 1 && v.length === 1){
     const gagnant = solos[0];
     const titre = gagnant.role === 'boumata' ? "Le Bouga Infiltré de la grotte Boumata triomphe !" : "OugaBanana triomphe !";
     afficherVictoire('solo', titre, `${gagnant.nom} est le dernier survivant.`, [gagnant.nom]);
@@ -1179,15 +1179,15 @@ function checkVictory() {
   }
 
   // si plus aucun infiltré et qu'il reste au moins un Bouga (les solos doivent aussi être éliminés)
-  if (nbInfiltres === 0 && solos.length === 0 && nbBooga > 0) {
+  if (nbInfiltres === 0 && solos.length === 0 && nbBooga > 0){
     afficherVictoire('booga', "Le Clan Bouga gagne !", "Tous les infiltrés ont été éliminés.", v.filter(j => !estInfiltre(j)).map(j => j.nom));
     return true;
   }
-  if (nbInfiltres > 0 && nbInfiltres >= nbBooga + solos.length) {
+  if (nbInfiltres > 0 && nbInfiltres >= nbBooga + solos.length){
     afficherVictoire('infiltre', "Les Infiltrés gagnent !", "Ils sont aussi nombreux (ou plus) que le reste du village.", v.filter(estInfiltre).map(j => j.nom));
     return true;
   }
-  if (v.length === 0) {
+  if (v.length === 0){
     afficherVictoire('egalite', "Égalité totale", "Plus aucun survivant dans la grotte.", []);
     return true;
   }
@@ -1195,7 +1195,7 @@ function checkVictory() {
   return false;
 }
 
-function afficherVictoire(camp, titre, sous, gagnants) {
+function afficherVictoire(camp, titre, sous, gagnants){
   showScreen('screen-win');
   const content = document.getElementById('win-content');
   content.className = 'win-content win-screen-' + camp;
@@ -1206,7 +1206,7 @@ function afficherVictoire(camp, titre, sous, gagnants) {
   `;
 }
 
-function showRecap() {
+function showRecap(){
   showScreen('screen-final');
   const content = document.getElementById('final-content');
   let html = `<div class="final-header"><span class="final-col-header">Joueur</span><span class="final-col-header" style="text-align:right">Rôle</span></div>`;

@@ -1,7 +1,7 @@
 const SituationListe = [
   "Devenir millionnaire",
   "Oublier son propre anniversaire",
-  "Dormir pendant un film entier",
+  "S'endormir pendant un film",
   "Se perdre dans sa propre ville",
   "Adopter 10 chats",
   "Partir faire le tour du monde",
@@ -32,13 +32,11 @@ const SituationListe = [
   "Apprendre 5 langues",
   "Faire un marathon",
   "Oublier un rendez-vous important",
-  "Arriver en retard à son mariage",
-  "Rater son avion",
-  "Perdre ses bagages",
-  "Faire du stop",
+  "Arriver en retard à son propre mariage",
+  "Rater un avion",
+  "Oublié ses bagages en sortant d'un transport en commun",
   "Faire un tatouage sur un coup de tête",
   "Changer de couleur de cheveux",
-  "Faire une énorme gaffe",
   "Mentir puis se faire griller",
   "Avoir une double vie",
   "Participer à une émission télé",
@@ -48,10 +46,8 @@ const SituationListe = [
   "Envoyer un message à la mauvaise personne",
   "Créer un scandale sans le vouloir",
   "Organiser la meilleure soirée",
-  "Annuler au dernier moment",
-  "Partir sans prévenir",
+  "Annuler au dernier moment un projet",
   "Se marier à Las Vegas",
-  "Adopter un animal exotique",
   "Posséder une ferme",
   "Vivre dans une cabane",
   "Acheter un bateau",
@@ -62,7 +58,7 @@ const SituationListe = [
   "Oublier de répondre pendant une semaine",
   "Réussir un examen sans réviser",
   "Tricher au Monopoly",
-  "Créer les règles d'un jeu",
+  "Créer les règles d'un jeu pour tricher",
   "Gagner un concours de karaoké",
   "Chanter faux avec confiance",
   "Danser sur une table",
@@ -82,12 +78,12 @@ const SituationListe = [
   "Se disputer avec un GPS",
   "Regarder une série en une nuit",
   "Passer 24h sans dormir",
+  "Passer 24h à dormir",
   "Faire une sieste n'importe où",
   "Manger le plus",
   "Commander toujours la même chose",
   "Faire une collection étrange",
   "Se lancer dans un projet fou",
-  "Partir en randonnée sans préparation",
   "Se tromper de train",
   "Rencontrer une célébrité",
   "Devenir célèbre par accident",
@@ -117,10 +113,8 @@ const SituationListe = [
   "Avoir le plus d'enfants",
   "Acheter une maison avant tout le monde",
   "Vivre dans un autre pays",
-  "Partir sans plan précis",
   "Finir influenceur voyage",
   "Faire une retraite spirituelle",
-  "Changer complètement de style vestimentaire",
   "Se réveiller dans une ville inconnue",
   "Passer à la télévision",
   "Faire le buzz",
@@ -128,7 +122,7 @@ const SituationListe = [
   "Lancer une startup",
   "Tout plaquer pour recommencer ailleurs",
   "Vivre sur un bateau",
-  "Habiter dans la montagne",
+  "Habiter à la montagne",
   "Adopter un chien demain",
   "Avoir une chaîne YouTube",
   "Faire un podcast",
@@ -138,6 +132,7 @@ const SituationListe = [
   "Participer à Koh-Lanta",
   "Participer à Pékin Express",
   "Participer à un escape game et tout résoudre",
+  "Participer à un escape game et échouer",
   "Survivre à une apocalypse zombie",
   "Construire un bunker",
   "Oublier ses propres affaires partout",
@@ -146,16 +141,11 @@ const SituationListe = [
   "Devenir patron",
   "Démissionner sur un coup de tête",
   "Acheter une voiture de sport",
-  "Se mettre au sport du jour au lendemain",
-  "Abandonner une semaine plus tard",
-  "Courir un semi-marathon",
   "Faire un triathlon",
   "Tester tous les sports possibles",
   "Se casser quelque chose en vacances",
-  "Perdre son passeport",
   "Monter dans le mauvais avion",
   "Faire confiance à un inconnu",
-  "Prendre un animal sans réfléchir",
   "Passer une journée entière sans parler",
   "Passer une journée entière à parler",
   "Réussir à négocier n'importe quoi",
@@ -163,7 +153,6 @@ const SituationListe = [
   "Gagner un débat",
   "Se lancer en politique",
   "Devenir maire de sa ville",
-  "Être élu par surprise",
   "Faire fortune grâce à une idée ridicule",
   "Inventer un objet inutile",
   "Acheter un objet inutile",
@@ -174,18 +163,13 @@ const SituationListe = [
   "Oublier pourquoi il est entré dans une pièce",
   "Faire rire un prof",
   "Faire pleurer de rire un groupe",
-  "Tomber en public",
-  "Faire semblant de savoir quelque chose",
-  "Être découvert immédiatement",
   "Se faire des amis partout",
   "Parler avec n'importe qui",
-  "Finir ambassadeur de quelque chose",
   "Avoir une statue à son effigie",
   "Écrire son autobiographie",
   "Faire une conférence TED",
   "Recevoir une récompense importante",
   "Changer le monde à sa façon",
-  "Réaliser un rêve d'enfant",
   "Avoir la vie la plus improbable",
   "Disparaître une semaine sans donner de nouvelles",
   "Se retrouver dans une situation complètement absurde",
@@ -199,7 +183,6 @@ const SpicyListe = [
   "Avoir un crush secret",
   "Avoir un crush sur quelqu'un dans cette pièce",
   "Tomber amoureux d'un ami",
-  "Tomber amoureux d'une amie",
   "Faire le premier pas",
   "Envoyer le premier message",
   "Répondre en moins de 10 secondes à un crush",
@@ -211,7 +194,6 @@ const SpicyListe = [
   "Recevoir le plus de messages de drague",
   "Envoyer le plus de messages de drague",
   "Avoir le plus de matchs sur une appli de rencontre",
-  "Supprimer puis réinstaller une appli de rencontre",
   "Tomber amoureux au premier regard",
   "Tomber amoureux trop vite",
   "Mettre le plus longtemps à tomber amoureux",
@@ -374,8 +356,69 @@ const SpicyListe = [
   "Avoir le plus de chances d'avoir un crush ce soir",
   "Recevoir une déclaration avant la fin de l'année",
   "Faire une déclaration avant la fin de l'année",
-  "Tomber amoureux avant la fin de la soirée"
+  "Tomber amoureux avant la fin de la soirée",
+  "Faire une fellation/cunnilingus",
+  "Faire l'amour ensemble dans le groupe",
+  "être le prochain à faire l'amour",
+  "être le prochain à se prendre un rateau",
+  "Payer quelqu'un pour du sexe",
+  "Payer quelqu'un dans cette pièce pour du sexe",
+  "Tomber par hasard dans un club échangiste",
+  "Aller dans un club échangiste",
+  "Se tromper de trous",
+  "Faire de la sodomie",
+  "Kiffer la sodomie",
+  "Se prendre un doigt",
+  "Se prendre un poing",
+  "Faire du sexe pour une promotion",
+  "être le prochain à regarder du porno",
+  "Faire un rêve érotique",
+  "Faire un rêve érotique avec quelqu'un dans la pièce",
+  "Regarder du porno plusieurs fois par jour",
+  "Se réveiller à coté d'un inconnu",
+  "être plus attiré par une personne plus agée",
+  "être plus attiré par une personne plus jeune",
+  "Avoir un rapport sexuel dans une voiture",
+  "Tromper son partenaire",
+  "Tromper son partenaire avec la mère/père du partenaire",
+  "Tromper son partenaire avec le frère/soeur du partenaire",
+  "Avoir une relation avec quelqu'un dans la pièce",
+  "Avoir un Sugar Daddy/Mommy",
+  "Avoir une aventure sexuel gênante",
+  "Mentir sur son orientation sexuelle",
+  "Avoir envie d'embrasser quelqu'un dans la pièce",
+  "Faire un plan à 3",
+  "Faire un plan à 4",
+  "Faire un plan à 5",
+  "être impliqué dans un Gang Bang",
+  "Avoir un rapport sexuel en public",
+  "Avoir un rapport sexuel sur la plage",
+  "Avoir un rapport sexuel sur un Yatch",
+  "être voyeur",
+  "Faire du voyeurisme",
+  "Faire du voyeurisme sans faire exprès",
+  "être surpris en ébat sexuel",
+  "Tromper son/sa partenaire",
+  "Coucher avec son/sa coloc",
+  "Avoir un rapport sexuel avec une prostituée/gigolo",
+  "Espérer se retrouver seul avec quelqu'un ici",
+  "Se filmer en plein ébat sexuel",
+  "Faire du BDSM (ou sexe violent)",
+  "Avoir des Objets de BDSM (Cravache, Martinet etc...)",
+  "Avoir du sexe avec quelqu'un pour le faire aller mieux",
+  "Avoir des rapports sexuels en téléphonant",
+  "Envoyer des sextos",
+  "être polygame",
+  "être soumis",
+  "être dominant"
 ];
+
+let pourcentageSpicy = 0; // 0 à 100, par pas de 10
+
+function changeSpicy(delta) {
+  pourcentageSpicy = Math.min(100, Math.max(0, pourcentageSpicy + delta));
+  document.getElementById('spicy-display').textContent = pourcentageSpicy + '%';
+}
 
 let joueurs = [];
 let indexJoueur = 0;
@@ -491,15 +534,15 @@ function random(max){
 function nextTurn(){
   const joueur = joueurs[indexJoueur];
 
-  // 90% -> situation
-  //   90-99 (10%) -> Spicy  (seulement si le switch est activé)
-  const modeSpicy = document.getElementById('switch-bois').checked;
+  // tirage : 0 à 99
+  // ex: pourcentageSpicy=30 → tirages 0-29 (30%) → spicy, reste → situation
+  // si pourcentageSpicy=0 → jamais spicy
   const tirage = random(100);
 
   let typeCase;
-  if(modeSpicy && tirage >= 90){
+  if (pourcentageSpicy > 0 && tirage < pourcentageSpicy) {
     typeCase = 'spicy';
-  }else{
+  } else {
     typeCase = 'situation';
   }
 

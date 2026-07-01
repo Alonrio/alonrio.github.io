@@ -391,6 +391,10 @@ const paires = [
   ["sœur", "cousine"]
 ];
 
+// ════════════════════════════════════════════════════
+//  ÉTAT GLOBAL
+// ════════════════════════════════════════════════════
+
 let joueurs       = [];
 let indexJoueur   = 0;
 let motUndercover = '';
@@ -398,16 +402,101 @@ let motCitoyen    = '';
 let roles         = [];
 let joueursActifs = [];
 let isAnimating   = false;
-let resultatFinal = null; // { type: 'citoyens'|'undercover'|'misterwhite'|'egalite', gagnants: [] }
-
-// Phase 1 : index du joueur en train de dire son mot
+let resultatFinal = null;
 let indexParole   = 0;
+let mwEnAttenteGuess = null; // nom du MW qui doit deviner après son élim
+
+// Compteurs UC / MW
+let nbUC = 1;
+let nbMW = 0;
+
+// ════════════════════════════════════════════════════
+//  SETUP — COMPTEURS + SWITCH
+// ════════════════════════════════════════════════════
+
+function changeCount(type, delta) {
+  const totalJoueurs = joueurs.length;
+  if (type === 'uc') {
+    nbUC = Math.max(1, nbUC + delta);
+  } else {
+    nbMW = Math.max(0, nbMW + delta);
+  }
+  document.getElementById('count-uc').textContent = nbUC;
+  document.getElementById('count-mw').textContent = nbMW;
+  validateComposition();
+}
+
+function validateComposition() {
+  const total      = joueurs.length;
+  const imposteurs = nbUC + nbMW;
+  const citoyens   = total - imposteurs;
+  const bubble     = document.getElementById('start-bubble');
+  const btn        = document.getElementById('btn-start');
+
+  function setBubble(msg, type) {
+    // type: 'error' | 'advice' | 'ok' | 'hidden'
+    bubble.textContent = msg;
+    bubble.className   = 'start-bubble' + (type !== 'hidden' ? ' bubble-' + type : '');
+    bubble.style.display = type === 'hidden' ? 'none' : 'block';
+  }
+
+  if (total < 3) {
+    if (total === 0) {
+      setBubble('Ajoute au moins 3 joueurs pour commencer.', 'error');
+    } else {
+      setBubble(`Il faut au moins 3 joueurs — encore ${3 - total} à ajouter.`, 'error');
+    }
+    btn.disabled = true;
+    return;
+  }
+
+  // ── ERREURS BLOQUANTES ───────────────────────────────
+  if (nbUC === 0) {
+    setBubble('Il faut au moins 1 UnderCover.', 'error');
+    btn.disabled = true;
+    return;
+  }
+  if (citoyens < 2) {
+    setBubble('Il faut au moins 2 Citoyens pour jouer.', 'error');
+    btn.disabled = true;
+    return;
+  }
+
+  // ── CONSEILS ─────────────────────────────────────────
+  btn.disabled = false;
+
+  const ratioIdeal = Math.floor(total / 3);
+  const ucIdeal    = Math.max(1, Math.floor(total / 4));
+
+  if (imposteurs > ratioIdeal + 1) {
+    setBubble(`Beaucoup d'imposteurs pour ${total} joueurs — la partie risque d'être courte.`, 'advice');
+    return;
+  }
+  if (nbUC > ucIdeal + 1) {
+    setBubble(`${nbUC} UnderCovers pour ${total} joueurs, c'est beaucoup — recommandé : ${ucIdeal}.`, 'advice');
+    return;
+  }
+  if (nbMW > 0 && total < 5) {
+    setBubble('Mister White avec moins de 5 joueurs peut déséquilibrer la partie.', 'advice');
+    return;
+  }
+  if (nbMW > 1 && total < 7) {
+    setBubble(`${nbMW} Mister White pour ${total} joueurs, c'est risqué.`, 'advice');
+    return;
+  }
+
+  setBubble('La composition est équilibrée, bonne partie !', 'ok');
+}
 
 document.getElementById('player-input').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') addPlayer();
 });
 
-// ════════════ SETUP ════════════
+validateComposition();
+
+// ════════════════════════════════════════════════════
+//  GESTION JOUEURS
+// ════════════════════════════════════════════════════
 
 function addPlayer() {
   const input = document.getElementById('player-input');
@@ -416,11 +505,13 @@ function addPlayer() {
   joueurs.push(nom);
   input.value = '';
   renderPlayerList();
+  validateComposition();
 }
 
 function removePlayer(nom) {
   joueurs = joueurs.filter(j => j !== nom);
   renderPlayerList();
+  validateComposition();
 }
 
 function renderPlayerList() {
@@ -435,33 +526,45 @@ function renderPlayerList() {
       ${nom}
       <button onclick="removePlayer('${nom}')" title="Retirer">✕</button>
     </div>`).join('');
-  document.getElementById('btn-start').disabled = joueurs.length < 3;
+  validateComposition();
 }
 
-// ════════════ DÉMARRAGE ════════════
+// ════════════════════════════════════════════════════
+//  DÉMARRAGE
+// ════════════════════════════════════════════════════
 
 function startGame() {
-  if (joueurs.length < 3) return;
-  indexJoueur = 0;
-  isAnimating = false;
+  const total = joueurs.length;
+  const imposteurs = nbUC + nbMW;
+  if (total < 3 || imposteurs <= 0 || imposteurs >= total) return;
+
+  indexJoueur   = 0;
+  isAnimating   = false;
+  mwEnAttenteGuess = null;
 
   const paire   = paires[random(paires.length)];
   motUndercover = paire[0];
   motCitoyen    = paire[1];
 
-  const modeMW = document.getElementById('switch-bois').checked;
-  roles = new Array(joueurs.length).fill('citoyen');
-
-  const idxUC = random(joueurs.length);
-  roles[idxUC] = 'undercover';
-
-  if (modeMW && joueurs.length >= 4) {
-    let idxMW;
-    do { idxMW = random(joueurs.length); } while (idxMW === idxUC);
-    roles[idxMW] = 'misterwhite';
+  // Mélanger l'ordre des joueurs pour varier qui reçoit quel rôle
+  const joueursShuffles = [...joueurs];
+  for (let i = joueursShuffles.length - 1; i > 0; i--) {
+    const j = random(i + 1);
+    [joueursShuffles[i], joueursShuffles[j]] = [joueursShuffles[j], joueursShuffles[i]];
   }
 
-  joueursActifs = joueurs.map((nom, i) => ({ nom, role: roles[i] }));
+  roles = new Array(total).fill('citoyen');
+  for (let i = 0; i < nbUC; i++)          roles[i]       = 'undercover';
+  for (let i = nbUC; i < imposteurs; i++) roles[i]       = 'misterwhite';
+  // Mélanger les rôles eux-mêmes
+  for (let i = roles.length - 1; i > 0; i--) {
+    const j = random(i + 1);
+    [roles[i], roles[j]] = [roles[j], roles[i]];
+  }
+
+  joueursActifs = joueursShuffles.map((nom, i) => ({ nom, role: roles[i] }));
+  // On garde l'ordre mélangé pour la distribution des cartes
+  joueurs = joueursShuffles;
 
   showScreen('screen-card');
   loadTurn();
@@ -469,44 +572,80 @@ function startGame() {
 
 function random(max) { return Math.floor(Math.random() * max); }
 
-function showScreen(id) {
-  ['screen-setup','screen-card','screen-parole','screen-vote','screen-win','screen-final']
-    .forEach(s => document.getElementById(s).style.display = 'none');
-  document.getElementById(id).style.display = 'flex';
+function shuffleIndices(n) {
+  const arr = Array.from({ length: n }, (_, i) => i);
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = random(i + 1);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
 }
 
-// ════════════ ÉCRAN 2 : DISTRIBUTION DES CARTES ════════════
+function showScreen(id) {
+  ['screen-setup','screen-card','screen-parole','screen-vote',
+   'screen-win','screen-final','screen-mw-guess']
+    .forEach(s => {
+      const el = document.getElementById(s);
+      if (el) el.style.display = 'none';
+    });
+  const target = document.getElementById(id);
+  if (target) target.style.display = 'flex';
+}
+
+// ════════════════════════════════════════════════════
+//  ÉCRAN 2 : DISTRIBUTION DES CARTES
+// ════════════════════════════════════════════════════
+
+const modeAnon = () => document.getElementById('switch-anon').checked;
 
 function loadTurn() {
   if (indexJoueur >= joueurs.length) {
-    // Toutes les cartes distribuées → Phase 1 : tour de parole
     startParolePhase();
     return;
   }
 
-  const joueur = joueurs[indexJoueur];
-  const role   = roles[indexJoueur];
+  const nom  = joueurs[indexJoueur];
+  const role = roles[indexJoueur];
+  const anon = modeAnon();
+
+  // Mot affiché
   let mot;
   if (role === 'misterwhite')     mot = 'Pas de mot…';
   else if (role === 'undercover') mot = motUndercover;
   else                            mot = motCitoyen;
 
-  document.getElementById('card-verso-name').textContent = joueur;
-  document.getElementById('card-recto-name').textContent = joueur;
+  document.getElementById('card-verso-name').textContent = nom;
+  document.getElementById('card-recto-name').textContent = nom;
   document.getElementById('card-mot').textContent        = mot;
 
+  // Icône & badge
   const iconEl = document.getElementById('card-role-icon');
-  if (role === 'undercover')       iconEl.innerHTML = iconUndercover();
-  else if (role === 'misterwhite') iconEl.innerHTML = iconMisterWhite();
-  else                             iconEl.innerHTML = iconCitoyen();
+  const badge  = document.getElementById('type-badge');
 
-  const badge = document.getElementById('type-badge');
-  if (role === 'undercover') {
-    badge.textContent = 'UnderCover'; badge.className = 'type-badge undercover';
-  } else if (role === 'misterwhite') {
-    badge.textContent = 'Mister White'; badge.className = 'type-badge misterwhite';
+  if (role === 'misterwhite') {
+    iconEl.innerHTML    = iconMisterWhite();
+    badge.textContent   = 'Mister White';
+    badge.className     = 'type-badge misterwhite';
+  } else if (role === 'undercover' && anon) {
+    // Mode anonyme : l'UC voit son mot mais pas son rôle
+    iconEl.innerHTML    = iconAnonUC();
+    badge.textContent   = 'Citoyen ou UnderCover';
+    badge.className     = 'type-badge anon';
+  } else if (role === 'undercover') {
+    iconEl.innerHTML    = iconUndercover();
+    badge.textContent   = 'UnderCover';
+    badge.className     = 'type-badge undercover';
   } else {
-    badge.textContent = 'Citoyen'; badge.className = 'type-badge citoyen';
+    // citoyen — en mode anon on affiche aussi le badge ambigu pour tout le monde
+    if (anon) {
+      iconEl.innerHTML  = iconAnonUC();
+      badge.textContent = 'Citoyen ou UnderCover';
+      badge.className   = 'type-badge anon';
+    } else {
+      iconEl.innerHTML  = iconCitoyen();
+      badge.textContent = 'Citoyen';
+      badge.className   = 'type-badge citoyen';
+    }
   }
 
   document.getElementById('card-inner').classList.remove('flipped');
@@ -519,7 +658,6 @@ function flipCard() {
   const inner = document.getElementById('card-inner');
   if (!inner.classList.contains('flipped')) {
     inner.classList.add('flipped');
-    // Label : dernier joueur → "C'est parti !" sinon "Joueur suivant ›"
     const btn = document.getElementById('btn-next');
     btn.textContent = (indexJoueur === joueurs.length - 1) ? 'C\'est parti !' : 'Joueur suivant ›';
     setBtnNext(true);
@@ -555,8 +693,9 @@ function renderPlayersRow() {
   }).join('');
 }
 
-// ════════════ ÉCRAN 3 : PHASE PAROLE ════════════
-// Chaque joueur actif dit un mot à voix haute, on clique Continuer pour passer au suivant.
+// ════════════════════════════════════════════════════
+//  ÉCRAN 3 : PHASE PAROLE
+// ════════════════════════════════════════════════════
 
 function startParolePhase() {
   indexParole = 0;
@@ -566,18 +705,16 @@ function startParolePhase() {
 
 function loadParole() {
   if (indexParole >= joueursActifs.length) {
-    // Tour de parole terminé → vote
     showVotePhase();
     return;
   }
   const joueur = joueursActifs[indexParole];
   document.getElementById('parole-name').textContent = joueur.nom;
 
-  const btn = document.getElementById('btn-parole-next');
+  const btn    = document.getElementById('btn-parole-next');
   const isLast = (indexParole === joueursActifs.length - 1);
   btn.textContent = isLast ? 'Passons au vote !' : 'Continuer ›';
 
-  // Chips
   const container = document.getElementById('parole-chips');
   container.innerHTML = joueursActifs.map((j, i) => {
     const cl = (i === indexParole) ? 'active' : '';
@@ -590,7 +727,9 @@ function nextParole() {
   loadParole();
 }
 
-// ════════════ ÉCRAN 4 : VOTE & ÉLIMINATION ════════════
+// ════════════════════════════════════════════════════
+//  ÉCRAN 4 : VOTE & ÉLIMINATION
+// ════════════════════════════════════════════════════
 
 function showVotePhase() {
   const resultEl = document.getElementById('vote-result');
@@ -612,13 +751,62 @@ function eliminer(nom) {
   const idx = joueursActifs.findIndex(j => j.nom === nom);
   if (idx === -1) return;
   const joueur = joueursActifs[idx];
-  joueursActifs.splice(idx, 1);
 
-  const resteUC      = joueursActifs.some(j => j.role === 'undercover');
-  const resteMW      = joueursActifs.some(j => j.role === 'misterwhite');
-  const nbCitoyens   = joueursActifs.filter(j => j.role === 'citoyen').length;
+  // Si c'est un Mister White → écran de guess avant de l'éliminer vraiment
+  if (joueur.role === 'misterwhite') {
+    mwEnAttenteGuess = nom;
+    const sub = document.getElementById('mw-guess-sub');
+    if (sub) sub.textContent = `${nom} a été éliminé·e. S'il·elle devine le mot des Citoyens, Mister White gagne !`;
+    const input = document.getElementById('mw-input');
+    if (input) input.value = '';
+    showScreen('screen-mw-guess');
+    setTimeout(() => { if (input) input.focus(); }, 100);
+    return;
+  }
 
-  // Message pour l'élimination elle-même
+  // Sinon élimination normale
+  _doEliminer(joueur, nom);
+}
+
+function validateMWGuess() {
+  const input = document.getElementById('mw-input');
+  if (!input) return;
+  const guess = input.value.trim().toLowerCase();
+  const correct = motCitoyen.toLowerCase();
+  const nom = mwEnAttenteGuess;
+
+  if (guess === correct) {
+    // Mister White gagne !
+    const idx = joueursActifs.findIndex(j => j.nom === nom);
+    if (idx !== -1) joueursActifs.splice(idx, 1);
+    resultatFinal = { type: 'misterwhite', gagnants: [nom] };
+    showFinal();
+  } else {
+    // Mauvaise réponse → élimination normale
+    const idx = joueursActifs.findIndex(j => j.nom === nom);
+    if (idx === -1) { showScreen('screen-vote'); return; }
+    const joueur = joueursActifs[idx];
+    showScreen('screen-vote');
+    _doEliminer(joueur, nom);
+  }
+  mwEnAttenteGuess = null;
+}
+
+// Entrée clavier sur le champ MW
+document.addEventListener('DOMContentLoaded', () => {
+  const mwInput = document.getElementById('mw-input');
+  if (mwInput) mwInput.addEventListener('keydown', e => { if (e.key === 'Enter') validateMWGuess(); });
+});
+
+function _doEliminer(joueur, nom) {
+  const idx = joueursActifs.findIndex(j => j.nom === nom);
+  if (idx !== -1) joueursActifs.splice(idx, 1);
+
+  const resteUC    = joueursActifs.some(j => j.role === 'undercover');
+  const resteMW    = joueursActifs.some(j => j.role === 'misterwhite');
+  const nbCitoyens = joueursActifs.filter(j => j.role === 'citoyen').length;
+  const nbImpost   = joueursActifs.filter(j => j.role !== 'citoyen').length;
+
   let elimMsg = '';
   if (joueur.role === 'undercover') {
     elimMsg = `Bravo ! <strong>${nom}</strong> était l'UnderCover.`;
@@ -630,34 +818,33 @@ function eliminer(nom) {
     elimMsg = `Raté… <strong>${nom}</strong> était Citoyen.`;
   }
 
-  // Déterminer la fin de partie selon la composition restante
-  // Fin si : plus d'imposteur du tout, ou il reste exactement 1 citoyen face à un imposteur, ou UC+MW seuls
+  // Conditions de fin
   let partieFinie = false;
-  let finMsg = '';
-
-  const seulementCitoyens = !resteUC && !resteMW;
-  const ucSeulFace1Citoyen = resteUC && !resteMW && nbCitoyens === 1;
-  const mwSeulFace1Citoyen = resteMW && !resteUC && nbCitoyens === 1;
+  const seulementCitoyens  = !resteUC && !resteMW;
+  const imposteursMajority  = nbImpost > 0 && nbImpost >= nbCitoyens;
   const ucEtMwSeuls        = resteUC && resteMW && nbCitoyens === 0;
 
   if (seulementCitoyens) {
-    partieFinie = true;
+    partieFinie   = true;
     resultatFinal = { type: 'citoyens', gagnants: joueursActifs.map(j => j.nom) };
   } else if (ucEtMwSeuls) {
-    partieFinie = true;
+    partieFinie   = true;
     resultatFinal = { type: 'egalite', gagnants: joueursActifs.map(j => j.nom) };
-  } else if (ucSeulFace1Citoyen) {
-    partieFinie = true;
+  } else if (resteUC && !resteMW && imposteursMajority) {
+    partieFinie   = true;
     resultatFinal = { type: 'undercover', gagnants: joueursActifs.filter(j => j.role === 'undercover').map(j => j.nom) };
-  } else if (mwSeulFace1Citoyen) {
-    partieFinie = true;
+  } else if (resteMW && !resteUC && imposteursMajority) {
+    partieFinie   = true;
     resultatFinal = { type: 'misterwhite', gagnants: joueursActifs.filter(j => j.role === 'misterwhite').map(j => j.nom) };
+  } else if (resteUC && resteMW && imposteursMajority) {
+    partieFinie   = true;
+    resultatFinal = { type: 'egalite', gagnants: joueursActifs.filter(j => j.role !== 'citoyen').map(j => j.nom) };
   }
 
   const blockClass = (joueur.role === 'citoyen') ? 'fail' : 'warning';
-  let msgHtml = `<div class="result-block ${blockClass}">${elimMsg}</div>${finMsg}`;
+  let msgHtml = `<div class="result-block ${blockClass}">${elimMsg}</div>`;
 
-  // Carte de révélation (sans le mot)
+  // Carte de révélation
   let iconHtml, badgeClass, badgeText;
   if (joueur.role === 'undercover') {
     iconHtml = iconUndercover(); badgeClass = 'type-badge undercover'; badgeText = 'UnderCover';
@@ -667,7 +854,7 @@ function eliminer(nom) {
     iconHtml = iconCitoyen(); badgeClass = 'type-badge citoyen'; badgeText = 'Citoyen';
   }
 
-  const btnSuiteLabel = partieFinie ? 'Voir le récap' : 'Tour suivant';
+  const btnSuiteLabel  = partieFinie ? 'Voir le résultat' : 'Tour suivant';
   const btnSuiteAction = partieFinie ? 'showFinal()' : 'continuerApresReveal()';
 
   const resultEl = document.getElementById('vote-result');
@@ -694,7 +881,6 @@ function eliminer(nom) {
     </div>
   `;
 
-  // Cacher les boutons de vote pendant la révélation
   document.getElementById('vote-players').innerHTML = '';
 }
 
@@ -713,35 +899,38 @@ function flipReveal(scene) {
 }
 
 function continuerApresReveal() {
-  // Retour phase 1 : tour de parole
   startParolePhase();
 }
 
-// ════════════ ÉCRAN 5 : VICTOIRE ════════════
+// ════════════════════════════════════════════════════
+//  ÉCRAN 5 : VICTOIRE
+// ════════════════════════════════════════════════════
 
 function showFinal() {
   const r = resultatFinal;
   let logoHtml, titre, sousTitre, couleurClass;
 
   if (r.type === 'citoyens') {
-    logoHtml    = `<img src="image/citizen.png" class="win-logo">`;
-    titre       = 'Les Citoyens ont gagné !';
-    sousTitre   = 'Tous les imposteurs ont été éliminés.';
+    logoHtml     = `<img src="image/citizen.png" class="win-logo">`;
+    titre        = 'Les Citoyens ont gagné !';
+    sousTitre    = 'Tous les imposteurs ont été éliminés.';
     couleurClass = 'win-screen-citoyen';
   } else if (r.type === 'undercover') {
-    logoHtml    = `<img src="image/undercover.png" class="win-logo">`;
-    titre       = "L'UnderCover a gagné !";
-    sousTitre   = "Les citoyens n'ont pas réussi à le démasquer.";
+    logoHtml     = `<img src="image/undercover.png" class="win-logo">`;
+    titre        = "L'UnderCover a gagné !";
+    sousTitre    = "Les citoyens n'ont pas réussi à le démasquer.";
     couleurClass = 'win-screen-undercover';
   } else if (r.type === 'misterwhite') {
-    logoHtml    = `<img src="image/misterwhite.png" class="win-logo">`;
-    titre       = 'Mister White a gagné !';
-    sousTitre   = "Les citoyens n'ont pas réussi à le trouver.";
+    logoHtml     = `<img src="image/misterwhite.png" class="win-logo">`;
+    titre        = 'Mister White a gagné !';
+    sousTitre    = r.gagnants.length === 1 && joueursActifs.length === 0
+      ? `${r.gagnants[0]} a deviné le mot des Citoyens !`
+      : "Les citoyens n'ont pas réussi à le trouver.";
     couleurClass = 'win-screen-misterwhite';
   } else {
-    logoHtml    = `<img src="image/undercover.png" class="win-logo win-logo-split"><img src="image/misterwhite.png" class="win-logo win-logo-split">`;
-    titre       = 'Égalité !';
-    sousTitre   = "L'UnderCover et Mister White se retrouvent seuls.";
+    logoHtml     = `<img src="image/undercover.png" class="win-logo win-logo-split"><img src="image/misterwhite.png" class="win-logo win-logo-split">`;
+    titre        = 'Égalité !';
+    sousTitre    = "L'UnderCover et Mister White se retrouvent seuls.";
     couleurClass = 'win-screen-egalite';
   }
 
@@ -756,11 +945,12 @@ function showFinal() {
     <div class="win-players">${gagnantsHtml}</div>
   `;
   document.getElementById('win-content').className = `win-content ${couleurClass}`;
-
   showScreen('screen-win');
 }
 
-// ════════════ ÉCRAN 6 : RÉCAP FINAL ════════════
+// ════════════════════════════════════════════════════
+//  ÉCRAN 6 : RÉCAP FINAL
+// ════════════════════════════════════════════════════
 
 function showRecap() {
   const tous = joueurs.map((nom, i) => ({ nom, role: roles[i] }));
@@ -795,19 +985,68 @@ function showRecap() {
     </div>
     ${lignes}
   `;
-
   showScreen('screen-final');
 }
 
-// ════════════ QUITTER ════════════
+// ════════════════════════════════════════════════════
+//  QUITTER
+// ════════════════════════════════════════════════════
 
-function quitGame() {
-  joueurs = []; roles = []; joueursActifs = [];
-  renderPlayerList();
+function continuerManche() {
+  indexJoueur      = 0;
+  isAnimating      = false;
+  mwEnAttenteGuess = null;
+  resultatFinal    = null;
+
+  const paire      = paires[random(paires.length)];
+  motUndercover    = paire[0];
+  motCitoyen       = paire[1];
+
+  const total      = joueurs.length;
+  const imposteurs = nbUC + nbMW;
+
+  const joueursShuffles = [...joueurs];
+  for (let i = joueursShuffles.length - 1; i > 0; i--) {
+    const j = random(i + 1);
+    [joueursShuffles[i], joueursShuffles[j]] = [joueursShuffles[j], joueursShuffles[i]];
+  }
+
+  roles = new Array(total).fill('citoyen');
+  for (let i = 0; i < nbUC; i++)          roles[i]       = 'undercover';
+  for (let i = nbUC; i < imposteurs; i++) roles[i]       = 'misterwhite';
+  for (let i = roles.length - 1; i > 0; i--) {
+    const j = random(i + 1);
+    [roles[i], roles[j]] = [roles[j], roles[i]];
+  }
+
+  joueursActifs = joueursShuffles.map((nom, i) => ({ nom, role: roles[i] }));
+  joueurs = joueursShuffles;
+
+  showScreen('screen-card');
+  loadTurn();
+}
+
+function nouvellePartie() {
+  // Retour setup en gardant les joueurs
   showScreen('screen-setup');
 }
 
-// ════════════ ICÔNES ════════════
+function quitGame() {
+  // Efface tout et retourne au setup vide
+  joueurs = []; roles = []; joueursActifs = [];
+  nbUC = 1; nbMW = 0;
+  mwEnAttenteGuess = null;
+  resultatFinal    = null;
+  document.getElementById('count-uc').textContent = nbUC;
+  document.getElementById('count-mw').textContent = nbMW;
+  renderPlayerList();
+  validateComposition();
+  showScreen('screen-setup');
+}
+
+// ════════════════════════════════════════════════════
+//  ICÔNES
+// ════════════════════════════════════════════════════
 
 function iconUndercover() {
   return `<img src="image/undercover.png" alt="UnderCover" style="width:100%;height:100%;object-fit:contain;">`;
@@ -817,4 +1056,13 @@ function iconMisterWhite() {
 }
 function iconCitoyen() {
   return `<img src="image/citizen.png" alt="Citoyen" style="width:100%;height:100%;object-fit:contain;">`;
+}
+function iconAnonUC() {
+  // Citoyen / UnderCover côte à côte avec un "/"
+  return `
+    <div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;gap:4px;">
+      <img src="image/citizen.png" alt="Citoyen" style="width:45%;height:100%;object-fit:contain;">
+      <span style="color:#8a4040;font-weight:700;font-size:1.2rem;">/</span>
+      <img src="image/undercover.png" alt="UnderCover" style="width:45%;height:100%;object-fit:contain;">
+    </div>`;
 }

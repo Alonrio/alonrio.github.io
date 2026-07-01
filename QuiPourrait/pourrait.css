@@ -478,3 +478,36 @@ section img{
   width: 17px;
 }
 
+
+/* ════ COMPTEUR SPICY +/- ════ */
+.spicy-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.spicy-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #850e7b66;
+  background: #420641;
+  color: #fd8ae4;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+.spicy-btn:hover  { background: #ca04a2; border-color: #ea08d7; color: #fff; }
+.spicy-btn:active { transform: scale(0.93); }
+.spicy-val {
+  min-width: 42px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fd8ae4;
+}

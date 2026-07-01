@@ -282,9 +282,9 @@ input[type="text"]::placeholder { color: #3d3060; }
   border: 1px solid #25eb39;
 }
 .type-badge.action {
-  background: #400a0c;
-  color: #f85e5e;
-  border: 1px solid #ed3a40;
+  background: #0a400c;
+  color: #60fa68;
+  border: 1px solid #25eb39;
 }
 .type-badge.bois {
   background: #3a2e00;
@@ -482,4 +482,174 @@ section h4{
 
 section img{
   width: 17px;
+}
+
+/* ════════════════════════════════════════════
+   MODE CARDS — steppers de pourcentage
+════════════════════════════════════════════ */
+.mode-card {
+  padding: 1rem 1.5rem;
+  margin-top: 1em;
+}
+
+.mode-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.mode-info {
+  flex: 1;
+}
+
+.mode-hint {
+  font-size: 0.72rem;
+  color: #3d3060;
+  margin-top: 0.1rem;
+}
+
+/* Stepper +/- */
+.pct-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.pct-val {
+  min-width: 3rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fde047;
+}
+
+.pct-val.pct-spicy   { color: #ff6b35; }
+.pct-val.pct-ultra   { color: #dd2222; }
+
+.btn-step {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3a2e00;
+  color: #fde047;
+  border: 1px solid #ca9a04;
+  transition: background 0.15s, transform 0.1s;
+}
+.btn-step:hover  { background: #5a4800; }
+.btn-step:active { transform: scale(0.93); }
+
+.btn-step-spicy {
+  background: #3a1500;
+  color: #ff6b35;
+  border-color: #cc4400;
+}
+.btn-step-spicy:hover { background: #5a2200; }
+
+.btn-step-ultra {
+  background: #400a0a;
+  color: #fc8484;
+  border-color: #8a1d1d;
+}
+.btn-step-ultra:hover { background: #601010; }
+
+/* Carte Ultra Spicy */
+.mode-ultraspicy-card {
+  border-color: #391a5e;
+}
+
+.ultraspicy-title {
+  color: #b155f7 !important;
+}
+
+/* Fix gap before Lancer la partie button */
+.btn-primary {
+  margin-top: 1em !important;
+}
+
+/* Warning total % */
+.pct-warning {
+  margin-top: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  background: #3a0a0a;
+  border: 1px solid #8a1d1d;
+  border-radius: 8px;
+  color: #ff6b6b;
+  font-size: 0.82rem;
+}
+
+/* ════════════════════════════════════════════
+   BADGES Spicy / Ultra Spicy
+════════════════════════════════════════════ */
+.type-badge.spicy {
+  background: #3a1500;
+  color: #ff8c42;
+  border: 1px solid #ff6b35;
+}
+.type-badge.ultraspicy {
+  background: #400a0a;
+  color: #feb4b4;
+  border: 1px solid #ed3a3a;
+}
+
+/* Switch bois caché (remplacé par stepper) */
+#switch-bois { display: none; }
+
+/* ════════════════════════════════════════════
+   MODE SOFT — stepper vert
+════════════════════════════════════════════ */
+.mode-soft-card {
+  border-color: #2a1a5e;
+}
+
+.soft-title {
+  color: #4ade80 !important;
+}
+
+.pct-val.pct-soft { color: #4ade80; }
+
+.btn-step-soft {
+  background: #0a2e10;
+  color: #4ade80;
+  border: 1px solid #166534;
+}
+.btn-step-soft:hover { background: #14532d; }
+
+/* ════════════════════════════════════════════
+   BADGES COMBINÉS — Vérité/Action × mode
+════════════════════════════════════════════ */
+
+/* Soft : garde les couleurs d'origine */
+/* .verite et .action existent déjà */
+
+/* Spicy : teinte orange */
+.type-badge.verite-spicy {
+  background: #2a1200;
+  color: #ffa04a;
+  border: 1px solid #ff6b35;
+}
+.type-badge.action-spicy {
+  background: #3a0a00;
+  color: #ff6b35;
+  border: 1px solid #cc4400;
+}
+
+/* Ultra Spicy : teinte rouge-foncé (couleurs de l'utilisateur) */
+.type-badge.verite-ultra {
+  background: #400a0a;
+  color: #feb4b4;
+  border: 1px solid #8a1d1d;
+}
+.type-badge.action-ultra {
+  background: #400a0a;
+  color: #fc8484;
+  border: 1px solid #ed3a3a;
 }

@@ -234,188 +234,333 @@ const actionListe = [
   "Maquille-toi de manière ridicule"
 ];
 
+// ── Listes Spicy ────────────────────────────────────────────────
+
+const veriteSpicyListe = [
+  "Qui ici tu trouves le plus attirant(e) ?",
+  "T'as déjà eu une pensée coquine sur quelqu'un du groupe ?",
+  "Quelle est ta position préférée ?",
+  "Quel est ton endroit le plus insolite où tu as… tu sais quoi ?",
+  "T'as déjà dragué quelqu'un en couple ?",
+  "Décris le meilleur baiser que tu aies jamais eu",
+  "Qu'est-ce qui t'excite le plus chez quelqu'un ?",
+  "Quel est le truc le plus osé que tu aies jamais envoyé par message ?",
+  "T'as déjà fait semblant d'avoir un orgasme ?",
+  "T'as déjà été surpris(e) dans une situation compromettante ?",
+  "Quel est ton plus grand kink que tu assumes ?",
+  "Avec qui ici tu passerais une nuit si tu devais absolument choisir ?",
+  "Décris ton type physique idéal",
+  "Quel est le compliment le plus osé qu'on t'ait fait ?",
+  "T'as déjà envoyé un message au mauvais destinataire et regretté ta vie ?",
+  "Raconte ton expérience la plus embarrassante en rapport avec le sexe",
+  "T'as déjà eu un crush sur un(e) prof ?",
+  "Combien de fois par semaine en moyenne… tu vois ce qu'on veut dire",
+  "Quel est le truc le plus coquin que tu aies jamais fait en public ?",
+  "Classer les personnes ici par attirance — si tu DEVAIS le faire"
+];
+
+const actionSpicyListe = [
+  "Fais un massage de 30 secondes à la personne de ton choix",
+  "Chuchote quelque chose de coquin à l'oreille de la personne à ta gauche",
+  "Fais le regard le plus séducteur possible à la personne en face de toi",
+  "Dis le prénom de quelqu'un ici de la manière la plus sensuelle possible",
+  "Décris en détail ce que tu ferais si tu avais une soirée seul(e) avec la personne à ta droite",
+  "Fais un câlin de 15 secondes à la personne de ton choix",
+  "Dis trois choses que tu trouves physiquement attirant chez quelqu'un dans cette pièce",
+  "Montre ton historique de recherche des 5 dernières minutes",
+  "Imite quelqu'un en train de séduire — le groupe juge si c'est convaincant",
+  "Envoie un GIF coquin (sans texto) à quelqu'un du groupe",
+  "Fais un clin d'œil irrésistible à chaque personne du groupe une par une",
+  "Chante un refrain de chanson romantique en regardant quelqu'un dans les yeux"
+];
+
+// ── Listes Ultra Spicy (pour couples) ──────────────────────────
+
+const veriteUltraSpicyListe = [
+  "Quelle est la chose la plus osée que tu aies faite en couple ?",
+  "Décris la soirée la plus torride que tu aies vécue avec ton/ta partenaire",
+  "Quel est ton fantasme que tu n'as jamais osé demander à ton/ta partenaire ?",
+  "Qu'est-ce qui te rend fou/folle chez ton/ta partenaire en privé ?",
+  "Quelle est la position que tu veux absolument tester mais que tu n'as pas encore osé proposer ?",
+  "Qu'est-ce qui t'a le plus surpris(e) chez ton/ta partenaire au lit ?",
+  "Quel est le lieu le plus fou où tu aimerais faire l'amour avec ton/ta partenaire ?",
+  "Quelle est la chose la plus courageuse que tu aies proposée à ton/ta partenaire ?",
+  "Raconte la fois où vous avez failli vous faire surprendre",
+  "Qu'est-ce que tu n'as jamais dit à ton/ta partenaire mais que tu penses pendant l'intimité ?"
+];
+
+const actionUltraSpicyListe = [
+  "Embrasse ton/ta partenaire pendant 10 secondes",
+  "Dis à ton/ta partenaire la chose la plus sexy que tu penses de lui/elle",
+  "Fais un strip-tease improvisé de 20 secondes pour ton/ta partenaire",
+  "Écris quelque chose de coquin dans la paume de la main de ton/ta partenaire",
+  "Donne un vrai massage de 1 minute à ton/ta partenaire",
+  "Murmure à l'oreille de ton/ta partenaire ce que tu voudrais faire plus tard ce soir",
+  "Fais à ton/ta partenaire le regard le plus séducteur que tu puisses",
+  "Échange un objet intime (bracelet, bague) avec ton/ta partenaire pour le reste de la soirée"
+];
+
+// ════════════════════════════════════════════════════════════════
+//  État du jeu
+// ════════════════════════════════════════════════════════════════
+
 let joueurs = [];
 let indexJoueur = 0;
 
+// ── Réglages des pourcentages ──────────────────────────────────
+// pctSoft est calculé automatiquement = 100 - bois - spicy - ultra
+let pctBois      = 0;
+let pctSpicy     = 0;
+let pctUltraSpicy = 0;
+
+function getSoftPct(){ return 100 - pctBois - pctSpicy - pctUltraSpicy; }
 
 // ════════════════════════════════════════════════════════════════
-//  ÉCOUTEUR D'ÉVÉNEMENT — détecte la touche Entrée dans l'input
-//  En Java, Scanner lisait la console. Ici on écoute le clavier.
+//  Listeners input joueur
 // ════════════════════════════════════════════════════════════════
 
 document.getElementById('player-input').addEventListener('keydown', function(e){
-  if (e.key === 'Enter'){
-    addPlayer();
-  }
+  if (e.key === 'Enter'){ addPlayer(); }
 });
 
-
 // ════════════════════════════════════════════════════════════════
-//  FONCTION : addPlayer()
-//  Ajoute un joueur à la liste quand on clique "Ajouter"
+//  AFFICHAGE DES POURCENTAGES
 // ════════════════════════════════════════════════════════════════
 
-function addPlayer() {
-  const input = document.getElementById('player-input');
+function renderSetupPcts(){
+  const soft = getSoftPct();
 
-  // .trim() supprime les espaces en début/fin
-  const nom = input.value.trim();
+  // Soft
+  document.getElementById('pct-soft').textContent = soft + '%';
 
-  //si le nom/vide est déja la on annule
-  if (!nom || joueurs.includes(nom)){
-    input.value = ''; 
-    return; 
+  // Bois
+  document.getElementById('pct-bois').textContent = pctBois + '%';
+  document.getElementById('desc-bois').textContent =
+    pctBois === 0 ? 'Désactivé' : 'Chance de tomber sur "Bois !" — ' + pctBois + '%';
+
+  // Spicy
+  document.getElementById('pct-spicy').textContent = pctSpicy + '%';
+  document.getElementById('desc-spicy').textContent =
+    pctSpicy === 0 ? 'Désactivé' : 'Questions pimentées — ' + pctSpicy + '%';
+
+  // Ultra Spicy
+  document.getElementById('pct-ultraspicy').textContent = pctUltraSpicy + '%';
+  document.getElementById('desc-ultraspicy').textContent =
+    pctUltraSpicy === 0 ? 'Désactivé — réservé aux couples' : 'Questions intimes pour couples — ' + pctUltraSpicy + '%';
+
+  // Warning si soft < 0
+  const warning = document.getElementById('pct-warning');
+  if (soft < 0){
+    warning.style.display = 'block';
+    warning.textContent = '⚠ Total dépasse 100% — réduis un mode (' + (100 - soft) + '% au total)';
+  } else {
+    warning.style.display = 'none';
   }
+}
 
-  // On ajoute le nom au tableau joueur
+// ════════════════════════════════════════════════════════════════
+//  GESTION DES POURCENTAGES (boutons + / -)
+// ════════════════════════════════════════════════════════════════
+
+function clamp(val, min, max){ return Math.max(min, Math.min(max, val)); }
+
+function changePct(type, delta){
+  if (type === 'soft'){
+    // Soft se pilote en bougeant tous les autres dans le sens opposé
+    // On prend sur le dernier mode actif ou on refuse si impossible
+    const newSoft = clamp(getSoftPct() + delta, 0, 100);
+    const diff = newSoft - getSoftPct(); // delta réel
+    // On répartit le diff en réduisant/augmentant les autres modes
+    // Règle simple : on touche d'abord ultra, puis spicy, puis bois
+    let reste = -diff;
+    if (reste > 0){
+      // On veut augmenter les autres (réduire soft) → bloquer si plus de place
+      const available = 100 - pctBois - pctSpicy - pctUltraSpicy;
+      if (available <= 0) return;
+    }
+    // Ici on redistribue sur ultra puis spicy puis bois
+    let r = reste;
+    if (r > 0){
+      const add = Math.min(r, 80 - pctUltraSpicy); pctUltraSpicy = clamp(pctUltraSpicy + add, 0, 80); r -= add;
+    } else if (r < 0){
+      const sub = Math.min(-r, pctUltraSpicy); pctUltraSpicy -= sub; r += sub;
+      if (r < 0){ const sub2 = Math.min(-r, pctSpicy); pctSpicy -= sub2; r += sub2; }
+      if (r < 0){ pctBois = Math.max(0, pctBois + r); }
+    }
+  } else if (type === 'bois'){
+    const newVal = clamp(pctBois + delta, 0, 90);
+    if (getSoftPct() - (newVal - pctBois) < 0) return; // pas de place
+    pctBois = newVal;
+  } else if (type === 'spicy'){
+    const newVal = clamp(pctSpicy + delta, 0, 80);
+    if (getSoftPct() - (newVal - pctSpicy) < 0) return;
+    pctSpicy = newVal;
+  } else if (type === 'ultraspicy'){
+    const newVal = clamp(pctUltraSpicy + delta, 0, 80);
+    if (getSoftPct() - (newVal - pctUltraSpicy) < 0) return;
+    pctUltraSpicy = newVal;
+  }
+  renderSetupPcts();
+}
+
+// ════════════════════════════════════════════════════════════════
+//  GESTION DES JOUEURS
+// ════════════════════════════════════════════════════════════════
+
+function addPlayer(){
+  const input = document.getElementById('player-input');
+  const nom = input.value.trim();
+  if (!nom || joueurs.includes(nom)){ input.value = ''; return; }
   joueurs.push(nom);
-  // On vide le champ
   input.value = '';
-  // On met à jour l'affichage
   renderPlayerList();
 }
 
 function removePlayer(nom){
-  // .filter() crée un NOUVEAU tableau sans l'élément à supprimer
-  // j => j !== nom  signifie "garder seulement les joueurs dont le nom ≠ nom"
-  joueurs = joueurs.filter(function(j){
-    return j !== nom;
-  });
-
+  joueurs = joueurs.filter(function(j){ return j !== nom; });
   renderPlayerList();
 }
 
 function renderPlayerList(){
   const container = document.getElementById('player-list');
-
-  // Si aucun joueur, on affiche un message et on désactive le bouton
   if (joueurs.length === 0){
     container.innerHTML = '<span class="empty-hint">Aucun joueur pour l\'instant…</span>';
     document.getElementById('btn-start').disabled = true;
     return;
   }
-
-  // .map() transforme chaque nom en morceau de HTML
-  // C'est comme une boucle for qui construit une liste de strings
   const htmlPastilles = joueurs.map(function(nom){
     return `<div class="player-tag">
       ${nom}
       <button onclick="removePlayer('${nom}')" title="Retirer">✕</button>
     </div>`;
   });
-
-  // .join('') colle tous les morceaux ensemble en une seule string
   container.innerHTML = htmlPastilles.join('');
-
-  // Le bouton "Lancer" est actif seulement si on a au moins 2 joueurs
   document.getElementById('btn-start').disabled = joueurs.length < 2;
 }
 
 // ════════════════════════════════════════════════════════════════
-//  FONCTION : startGame()
-//  Lance la partie : cache l'écran setup, affiche l'écran jeu
+//  DÉMARRAGE
 // ════════════════════════════════════════════════════════════════
 
 function startGame(){
   if (joueurs.length < 2) return;
+  if (getSoftPct() < 0) return; // incohérent
   indexJoueur = 0;
-  // On cache l'écran setup en changeant son style CSS
   document.getElementById('screen-setup').style.display = 'none';
-  // On affiche l'écran jeu
   document.getElementById('screen-game').style.display = 'flex';
-  // On affiche le premier tour directement
   nextTurn();
 }
 
 // ════════════════════════════════════════════════════════════════
-//  FONCTION : random(max)
-//  Retourne un entier aléatoire entre 0 et max-1
+//  UTILITAIRES
 // ════════════════════════════════════════════════════════════════
 
-function random(max){
-  // Math.random() donne un décimal entre 0.0 et 0.999...
-  // * max l'étire entre 0.0 et max-0.001
-  // Math.floor() arrondit vers le bas → entier entre 0 et max-1
-  return Math.floor(Math.random() * max);
-}
+function random(max){ return Math.floor(Math.random() * max); }
 
 // ════════════════════════════════════════════════════════════════
-//  FONCTION : nextTurn()
-//  Cœur du jeu — tire Action ou Vérité, puis une question
-//  C'est l'équivalent du while() dans ton Java, déclenché par le bouton
+//  TOUR SUIVANT
 // ════════════════════════════════════════════════════════════════
+
+// Couleurs de bordure par type
+const BORDER_COLORS = {
+  verite:     '#25eb39',   // vert
+  action:     '#25eb39',   // vert (soft = même couleur que vérité)
+  bois:       '#ca9a04',   // jaune
+  spicy:      '#ff6b35',   // orange
+  ultraspicy: '#8a1d1d',   // rouge-foncé (couleur uploadée)
+};
 
 function nextTurn(){
   const joueur = joueurs[indexJoueur];
-
-  //   0-44  (45%) -> Vérité
-  //   45-89 (45%) -> Action
-  //   90-99 (10%) -> Bois  (seulement si le switch est activé)
-  const modeBois = document.getElementById('switch-bois').checked;
   const tirage = random(100);
 
-  let typeCase;
-  if(modeBois && tirage >= 90){
-    typeCase = 'bois';
-  }else{
-    if (modeBois){
-      if(tirage < 45){
-          typeCase = 'verite';
-      }else{
-          typeCase = 'action';
-      }
-    }else{
-      if(random(2) === 0){
-          typeCase = 'verite';
-      }else{
-          typeCase = 'action';
-      }
-    }
-  }
+  // Zones cumulatives basées sur les variables réelles
+  const soft = getSoftPct();
+  const zoneSoft      = soft;
+  const zoneBois      = zoneSoft  + pctBois;
+  const zoneSpicy     = zoneBois  + pctSpicy;
+  // zoneUltraSpicy = 100
 
-  // On choisit la bonne liste / texte selon le tirage
+  // Détermination du mode
+  let mode;   // 'soft' | 'bois' | 'spicy' | 'ultraspicy'
+  if      (tirage < zoneSoft)   mode = 'soft';
+  else if (tirage < zoneBois)   mode = 'bois';
+  else if (tirage < zoneSpicy)  mode = 'spicy';
+  else                          mode = 'ultraspicy';
+
+  // Détermination du sous-type (Vérité / Action) selon le mode
+  let sousType = null;  // null pour bois
   let question;
-  if (typeCase === 'bois') {
+
+  if (mode === 'bois'){
     question = 'Tu dois boire un verre !';
-  } else {
-    const liste = typeCase === 'verite' ? veriteListe : actionListe;
-    question = liste[random(liste.length)];
+  } else if (mode === 'soft'){
+    sousType = random(2) === 0 ? 'verite' : 'action';
+    question = sousType === 'verite'
+      ? veriteListe[random(veriteListe.length)]
+      : actionListe[random(actionListe.length)];
+  } else if (mode === 'spicy'){
+    sousType = random(2) === 0 ? 'verite' : 'action';
+    question = sousType === 'verite'
+      ? veriteSpicyListe[random(veriteSpicyListe.length)]
+      : actionSpicyListe[random(actionSpicyListe.length)];
+  } else { // ultraspicy
+    sousType = random(2) === 0 ? 'verite' : 'action';
+    question = sousType === 'verite'
+      ? veriteUltraSpicyListe[random(veriteUltraSpicyListe.length)]
+      : actionUltraSpicyListe[random(actionUltraSpicyListe.length)];
   }
 
-  // ── Mise à jour de l'interface ───────────────────────────────
-  // Affiche le nom du joueur
+  // ── Badge label : "Vérité — Soft" / "Action — Spicy" / "Bois" ──
+  let badgeLabel;
+  if (mode === 'bois'){
+    badgeLabel = 'Bois';
+  } else {
+    const sousLabel = sousType === 'verite' ? 'Vérité' : 'Action';
+    const modeLabel = mode === 'soft' ? 'Soft' : mode === 'spicy' ? 'Spicy' : 'Ultra Spicy';
+    badgeLabel = sousLabel + ' — ' + modeLabel;
+  }
+
+  // ── Classe CSS du badge (basée sur le sous-type ou bois) ──
+  // Pour la couleur du badge on utilise le sous-type quand applicable
+  let badgeClass;
+  if (mode === 'bois'){
+    badgeClass = 'bois';
+  } else if (mode === 'soft'){
+    badgeClass = sousType; // 'verite' ou 'action'
+  } else if (mode === 'spicy'){
+    badgeClass = sousType === 'verite' ? 'verite-spicy' : 'action-spicy';
+  } else {
+    badgeClass = sousType === 'verite' ? 'verite-ultra' : 'action-ultra';
+  }
+
+  // ── Couleur de bordure de la carte ──
+  let borderColor;
+  if (mode === 'bois')       borderColor = BORDER_COLORS.bois;
+  else if (mode === 'soft')  borderColor = sousType === 'verite' ? BORDER_COLORS.verite : BORDER_COLORS.action;
+  else if (mode === 'spicy') borderColor = BORDER_COLORS.spicy;
+  else                       borderColor = BORDER_COLORS.ultraspicy;
+
+  // ── Mise à jour UI ──────────────────────────────────────────
   document.getElementById('current-player').textContent = joueur;
-  // Affiche la question / consigne
   document.getElementById('question-text').textContent = question;
-  // Met à jour le badge avec la bonne couleur CSS
+
   const badge = document.getElementById('type-badge');
-  if (typeCase === 'verite') {
-    badge.textContent = 'Vérité';
-    badge.className = 'type-badge verite';
-  } else if (typeCase === 'action') {
-    badge.textContent = 'Action';
-    badge.className = 'type-badge action';
-  } else {
-    badge.textContent = 'Bois';
-    badge.className = 'type-badge bois';
-  }
+  const card  = document.querySelector('.question-card');
 
-  // ── Passage au joueur suivant ────────────────────────────────
-  // Le modulo % fait revenir à 0 quand on dépasse le dernier joueur
-  // Équivalent Java : index++; if (index >= pSize) { index = 0; }
+  badge.className  = 'type-badge ' + badgeClass;
+  badge.textContent = badgeLabel;
+  card.style.borderColor = borderColor;
+
   indexJoueur = (indexJoueur + 1) % joueurs.length;
-
-  // Rafraîchit la barre des joueurs (surligne le joueur actif)
   renderPlayersRow();
 }
 
-
 // ════════════════════════════════════════════════════════════════
-//  FONCTION : renderPlayersRow()
-//  liste des joueurs en bas, joueur actif surligné
+//  JOUEURS ACTIFS (bas de l'écran jeu)
 // ════════════════════════════════════════════════════════════════
 
-function renderPlayersRow() {
+function renderPlayersRow(){
   const actif = (indexJoueur - 1 + joueurs.length) % joueurs.length;
   const container = document.getElementById('players-row');
   container.innerHTML = joueurs.map(function(nom, i){
@@ -424,19 +569,18 @@ function renderPlayersRow() {
   }).join('');
 }
 
-
 // ════════════════════════════════════════════════════════════════
-//  FONCTION : quitGame()
-//  Revient à l'écran de setup + réinitialise tout
+//  QUITTER — ne reset PAS les pourcentages, juste les joueurs
 // ════════════════════════════════════════════════════════════════
 
-function quitGame() {
-  // Cache l'écran jeu
+function quitGame(){
   document.getElementById('screen-game').style.display = 'none';
-  // Réaffiche l'écran setup
   document.getElementById('screen-setup').style.display = 'flex';
-  // Vide le tableau des joueurs
   joueurs = [];
-  // Rafraîchit l'affichage (montrera le message "aucun joueur")
   renderPlayerList();
+  // On re-synchronise l'affichage des % (inchangés) au cas où
+  renderSetupPcts();
 }
+
+// Init affichage au chargement
+renderSetupPcts();

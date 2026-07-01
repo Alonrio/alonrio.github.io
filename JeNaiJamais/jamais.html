@@ -45,12 +45,13 @@
       <div class="switch-row">
         <div>
           <div class="card-title" style="margin-bottom:0.2rem">Spicy</div>
-          <p class="switch-desc">Ajoute une chance de tomber sur une question spicy (~10%)</p>
+          <p class="switch-desc">Pourcentage de questions spicy. À 0%, aucune question spicy.</p>
         </div>
-        <label class="toggle">
-          <input type="checkbox" id="switch-bois">
-          <span class="toggle-slider"></span>
-        </label>
+        <div class="spicy-counter">
+          <button class="spicy-btn" onclick="changeSpicy(-10)">−</button>
+          <span class="spicy-val" id="spicy-display">0%</span>
+          <button class="spicy-btn" onclick="changeSpicy(10)">+</button>
+        </div>
       </div>
     </div>
 
@@ -93,7 +94,10 @@
     <p>WebMaster : Pierr0tW</p>
     <p>Icones : Flaticon</p>
   </div>
-  <div class = "footer-right"><p>2026-2027</p></div>
+  <div class = "footer-right">
+    <p>2026-2027</p>
+    <p><a href="patchnote/patchnote.html">PatchNote</a></p>
+  </div>
 </footer>
 
 <script src="jamais.js"></script>

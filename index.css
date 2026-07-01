@@ -96,7 +96,9 @@ footer p{
   grid-column: 3;
   text-align: right;
 }
-
+.footer-right a{
+  color: #77c870;
+}
 /* ════════════════════════════════════════════
    Carte jeux
 ════════════════════════════════════════════ */

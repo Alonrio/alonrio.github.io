@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OugaBooga</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="OugaBooga.css">
+    </head>
+    <body>
+        <header>
+            <div class="home">
+              <a href="../index.html"><img src="image/partir.png"></a>
+              <p>Retour à l'accueil</p>
+            </div>
+            <div class="header-center">
+              <h1>OugaBooga</h1>
+              <p>Un jeu de role (remix d'un truc connu mais on à pas les droits)</p>
+            </div>
+        </header>
+
+        <main>
+
+          <!-- ══ ÉCRAN 1 : SETUP ══ -->
+          <div id="screen-setup">
+            <div class="card">
+              <div class="card-title">Ajouter des joueurs</div>
+              <div class="input-row">
+                <input type="text" id="player-input" placeholder="Nom du joueur" maxlength="20" />
+              </div>
+              <div id="player-list">
+                <span class="empty-hint">Aucun joueur ajouté…</span>
+              </div>
+            </div>
+            <div class="card switch-card">
+                <h2 class="card-title" style="font-size: 1em;">Liste des Roles :</h2>
+
+                <div class="number-row" style=" margin-top: 2rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            OugaBooga
+                        </div>
+                        <p class="switch-desc">Doit survivre avec tous ses amis du clan Bouga.</p>
+                    </div>
+                    <div class="counter-ctrl">
+                      <button class="counter-btn" onclick="changeCount('switch-booga',-1)">−</button>
+                      <span class="counter-val" id="switch-booga-display">0</span>
+                      <button class="counter-btn" onclick="changeCount('switch-booga',1)">+</button>
+                      <input type="hidden" id="switch-booga" value="0">
+                    </div>
+                </div>
+
+                <div class="number-row" style=" margin-top: 1rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            OugaBooga Infiltré
+                        </div>
+                        <p class="switch-desc">Doit tuer tous les OugaBooga du clan (sauf ses coéquipiers infiltrés).</p>
+                    </div>
+                    <div class="counter-ctrl">
+                      <button class="counter-btn" onclick="changeCount('switch-infiltre',-1)">−</button>
+                      <span class="counter-val" id="switch-infiltre-display">0</span>
+                      <button class="counter-btn" onclick="changeCount('switch-infiltre',1)">+</button>
+                      <input type="hidden" id="switch-infiltre" value="0">
+                    </div>
+                </div>
+
+                <div class="switch-row" style=" margin-top: 1rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            OugaBooga Mystique
+                        </div>
+                        <p class="switch-desc">Peut tuer ou faire revivre un OugaBooga.</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-mystique">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="switch-row" style=" margin-top: 1rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            OugaBooga à Lance
+                        </div>
+                        <p class="switch-desc">Peut tuer un OugaBooga quand il meurt.</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-lance">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="switch-row" style=" margin-top: 1rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            OugaBooga Dans le Turfu
+                        </div>
+                        <p class="switch-desc">Il voit l'avenir ! Il peut connaître un rôle chaque nuit.</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-turfu">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="switch-row" style=" margin-top: 1rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            BabyBooga
+                        </div>
+                        <p class="switch-desc">Il est discret ! Il peut regarder quand les OugaBooga Infiltrés se réveillent.</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-babybooga">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="switch-row" style=" margin-top: 1rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            OugaBooma
+                        </div>
+                        <p class="switch-desc">C'est un Boomer, il a leur sagesse ! Et il peut donc vivre 2 fois.</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-booma">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="switch-row" style=" margin-top: 1rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            OugaBounta
+                        </div>
+                        <p class="switch-desc">Comme un Bounty personne ne l'aime... Mais il ne peut pas se faire voter pour sortir de la grotte et ses voix comptent double (ne peut pas être élu chef Bouga) !</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-bounta">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="switch-row" style=" margin-top: 1rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            OugaBanana
+                        </div>
+                        <p class="switch-desc">Il n'est pas comme les autres, il aime les bananes. Il veut tuer tous les OugaBooga car c'est le seul à aimer les bananes.</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-banana">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="switch-row" style=" margin-top: 1rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            Un petit bouga en plus
+                        </div>
+                        <p class="switch-desc">Il a un petit truc en plus... Une massue Bouga, il peut l'utiliser pour tuer quelqu'un mais si ce bouga n'est pas infiltré ou solitaire il meurt.</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-petit">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="switch-row" style=" margin-top: 1rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            Bougamoureux
+                        </div>
+                        <p class="switch-desc">Il tombe amoureux d'une personne au hasard, seuls lui et son amoureux sont au courant et leurs rôles sont révélés. Mais si l'un meurt, l'autre se frappera trop fort avec une massue Bouga et mourra.</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-bougamoureux">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="switch-row" style=" margin-top: 1rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            Le BougaMoutar
+                        </div>
+                        <p class="switch-desc">Il est jeune et suit l'exemple d'un modèle. Si ce modèle meurt, il devient méchant et s'infiltre avec les autres Bouga.</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-moutar">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="switch-row" style=" margin-top: 1rem;">
+                    <div>
+                        <div class="card-title" style="margin-bottom:0.2rem">
+                            Le Bouga Infiltré de la grotte Boumata
+                        </div>
+                        <p class="switch-desc">Il est infiltré chez les infiltrés, toutes les 2 nuits il peut tuer quelqu'un.</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="switch-boumata">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+            </div>
+            <div id="setup-error" class="setup-error" style="display:none"></div>
+            <button class="btn btn-primary" id="btn-start" onclick="startGame()" disabled>
+              Lancer la partie
+            </button>
+          </div>
+
+          <!-- ══ ÉCRAN 2 : DISTRIBUTION DES CARTES ══ -->
+          <div id="screen-card" style="display:none">
+            <div id="players-row"></div>
+            <div class="card-scene" id="card-scene" onclick="flipCard()">
+              <div class="card-inner" id="card-inner">
+                <div class="card-face card-verso">
+                  <h1>OugaBooga</h1>
+                  <img class="verso-logo-img" src="image/viande.png" alt="" onerror="this.style.display='none'">
+                  <p class="verso-hint">Appuie pour révéler</p>
+                </div>
+                <div class="card-face card-recto">
+                  <div class="recto-title" id="card-recto-title">Carte de -</div>
+                  <div id="type-badge" class="type-badge">-</div>
+                  <div class="recto-icon" id="card-role-icon"></div>
+                  <div class="recto-mot" id="card-mot">-</div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" id="btn-next" onclick="nextTurn()">
+              Joueur suivant ›
+            </button>
+            <button class="btn btn-quit" onclick="quitGame()">Quitter</button>
+          </div>
+
+
+          <!-- ══ ÉCRAN ÉLECTION DU MAIRE ══ -->
+          <div id="screen-maire" style="display:none">
+            <div class="vote-header">
+              <p class="vote-title">Élection du Chef Bouga</p>
+              <p class="vote-sub">Chaque joueur plaide sa cause, puis le village vote à main levée.<br>Appuie sur le joueur élu comme Chef Bouga.</p>
+            </div>
+            <div id="maire-players" class="vote-players"></div>
+          </div>
+
+          <!-- ══ ÉCRAN 3 : NUIT (réveils successifs) ══ -->
+          <div id="screen-night" style="display:none">
+            <div class="night-header">
+              <p class="night-jour" id="night-jour-label">Nuit 1</p>
+              <p class="night-role-title" id="night-role-title">-</p>
+              <p class="night-role-desc" id="night-role-desc">-</p>
+            </div>
+            <div id="night-target-area" class="vote-players"></div>
+            <div id="night-info" class="night-info" style="display:none"></div>
+            <button class="btn btn-primary" id="btn-night-skip" onclick="nightSkip()">Passer ce rôle ›</button>
+          </div>
+
+          <!-- ══ ÉCRAN : RÉSUMÉ DU MATIN ══ -->
+          <div id="screen-morning" style="display:none">
+            <div class="vote-header">
+              <p class="vote-title" id="morning-title">Le village se réveille...</p>
+            </div>
+            <div id="morning-content" class="final-content"></div>
+            <button class="btn btn-primary" onclick="goToParole()">Continuer ›</button>
+          </div>
+
+          <!-- ══ ÉCRAN 4 : TOUR DE PAROLE ══ -->
+          <div id="screen-parole" style="display:none">
+            <div class="vote-header">
+              <p class="vote-title">Tour de parole</p>
+              <p class="vote-sub">Chaque joueur discute pour démasquer les infiltrés.</p>
+            </div>
+            <div id="parole-chips" class="vote-players" style="justify-content:center"></div>
+            <div class="parole-card card">
+              <p class="parole-label">C'est au tour de</p>
+              <p id="parole-name" class="parole-name">-</p>
+              <p class="parole-hint">Laisse-le parler, puis clique sur Continuer.</p>
+            </div>
+            <button class="btn btn-primary" id="btn-parole-next" onclick="nextParole()">Continuer ›</button>
+          </div>
+
+          <!-- ══ ÉCRAN 5 : VOTE & ÉLIMINATION ══ -->
+          <div id="screen-vote" style="display:none">
+            <div class="vote-header">
+              <p class="vote-title">Qui éliminez-vous ?</p>
+              <p class="vote-sub">Votez à main levée, puis appuyez sur le joueur éliminé.</p>
+            </div>
+            <div id="vote-result" class="vote-result-area"></div>
+            <div id="vote-players" class="vote-players"></div>
+          </div>
+
+          <!-- ══ ÉCRAN 6 : VICTOIRE ══ -->
+          <div id="screen-win" style="display:none">
+            <div id="win-content" class="win-content"></div>
+            <button class="btn btn-continue" onclick="showRecap()">Voir le récap</button>
+            <button class="btn btn-continue" onclick="nouveauTour()">Nouveau tour</button>
+            <button class="btn btn-new" onclick="nouvellePartie()">Nouvelle partie</button>
+            <button class="btn btn-exit" onclick="quitterJeu()">Quitter</button>
+          </div>
+
+          <!-- ══ ÉCRAN 7 : RÉCAP FINAL ══ -->
+          <div id="screen-final" style="display:none">
+            <div class="vote-header">
+              <p class="vote-title">Récapitulatif</p>
+              <p class="vote-sub">Les rôles de tout le clan.</p>
+            </div>
+            <div id="final-content" class="final-content"></div>
+            <button class="btn btn-continue" onclick="nouveauTour()">Nouveau tour</button>
+            <button class="btn btn-new" onclick="nouvellePartie()">Nouvelle partie</button>
+            <button class="btn btn-exit" onclick="quitterJeu()">Quitter</button>
+          </div>
+
+        </main>
+
+        <footer>
+            <div class="footer-left">
+              <p>WebMaster : Pierr0tW</p>
+              <p>Icones : Flaticon & Magnific</p>
+            </div>
+            <div class="footer-right">
+              <p>2026-2027</p>
+              <p><a href="patchnote/patchnote.html">PatchNote</a></p>
+            </div>
+        </footer>
+    </body>
+    <script src="OugaBooga.js"></script>
+</html>

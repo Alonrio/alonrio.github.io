@@ -1,0 +1,256 @@
+header{
+    background-color: #181B1C;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.HeaderLeft{
+    display: flex;
+    align-items: center;
+}
+.HeaderLeft img{
+    width: 100px;
+    height: 100px;
+}
+
+
+.HeaderRight{
+    margin-left: auto;
+    margin-right: 2em;
+    display: flex;
+    align-items: center;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background-color: #181B1C;
+    color: white;
+    margin: 0;
+    padding-top: 80px;
+}
+
+
+h2{
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+}
+
+article{
+    background-color: #181B1C;
+    margin: 1em;
+    padding: 1em;
+    
+    border-radius: 15px;
+    border-color: #292929;
+}
+
+button{
+    display: block;
+    margin: 1em auto;
+    padding: 1em 4em 1em 4em;
+}
+
+a{
+    text-decoration: none;
+}
+
+.BlueButton{
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    border-color: #292929;
+    color: white;
+    font-size: 1em;
+    background: linear-gradient(40deg,#002125, #00565d, #002125);
+}
+
+.PinkButton{
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    border-color: #292929;
+    color: white;
+    font-size: 1em;
+    background: linear-gradient(40deg, #38003b, #7c0069,#38003b);
+}
+
+.GreenButton{
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    border-color: #292929;
+    color: white;
+    font-size: 1em;
+    background: linear-gradient(40deg,#00410f, #005014, #00410f);
+}
+
+
+main img{
+    display: block;
+    margin: 0 auto; 
+}
+.HeaderLeft h1{
+    color: #00BFCC
+}
+
+.Transition{
+    padding: 0.5em 1em 0.5em 1em;
+    margin: 1em 4em 1em 4em;
+    border: #292929 ;
+}
+
+.Duo{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.Left{
+    grid-column: 1;
+}
+.Right{
+    grid-column: 2;
+}
+
+
+.Triple{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.TripleRight{
+    grid-column: 1;
+    grid-row: 2;
+}
+.TripleCenter{
+    grid-column: 2;
+    grid-row: 2;
+}
+.TripleLeft{
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.Blue{
+    padding: 0.5em 1em 3em 1em;
+    background: linear-gradient(40deg,#002125, #00565d, #002125);
+}
+.Blue h1{
+    color:#00BFCC;
+}
+
+
+.Pink{
+    padding: 0.5em 1em 3em 1em;
+    background: linear-gradient(40deg, #38003b, #7c0069,#38003b);
+}
+.Pink h1{
+    color: #cc00ff;
+}
+
+.Green{
+    padding: 0.5em 1em 3em 1em;
+    background: linear-gradient(40deg,#00410f, #005014, #00410f);
+}
+.Green h1{
+    color: #16FF58
+}
+
+
+.BlueTop, .PinkTop, .GreenTop{
+    margin: 1em 13em 1em 4em
+}
+.BlueTop h1, .PinkTop h1, .GreenTop h1{
+    margin: 1em 0 0 -1em;
+}
+
+.Contact{
+    background-color: #181B1C;
+    margin: 1em;
+    padding: 2em 6em 4em 6em;
+    border-radius: 15px;
+}
+
+.Contact h2{
+    text-align: center;
+    margin-top: 0em;
+}
+
+.Contact form{
+    display: grid;
+    gap: 1.5em;
+}
+
+.Contact input, .Contact textarea{
+    box-sizing: border-box;
+    border: none;
+    border-radius: 10px;
+    padding: 1em 1.5em;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: linear-gradient(40deg,#00410f, #005014, #00410f)
+}
+
+.Contact input{
+    height: 4em;
+}
+
+.Contact textarea{
+    height: 10em;
+    resize: vertical;
+}
+
+
+.Contact button{
+    padding: 1em 4em 1em 4em;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(40deg,#00410f, #005014, #00410f);
+    color: white;
+    font-size: 1em;
+}
+
+footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 1em;
+}
+
+footer h4{
+    grid-column: 1;
+    font-size: 10px;
+}
+footer h5{
+    grid-column: 2;
+
+    font-size: 10px;
+    text-align: end;
+}
+/* ----------------------------------------------------------------------------- */
+@media screen and (min-width: 1024px) {
+    article{
+        margin: 2em 3em;
+    }
+    .BlueTop{
+        margin: auto 20em auto 3em;
+    }
+    .PinkTop{
+        margin: auto 20em auto 3em;
+    }
+    .GreenTop{
+        margin: auto 20em auto 3em;
+    }
+
+    main{
+        font-size: 1.25em;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    /* CSS pour les tablettes */
+}

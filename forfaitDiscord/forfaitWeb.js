@@ -14,9 +14,6 @@ const E1 = document.getElementById("E1")
 const E2 = document.getElementById("E2")
 const E3 = document.getElementById("E3")
 
-const ResponsivePhone = document.getElementById("ResponsivePhone")
-const ResponsiveTablat = document.getElementById("ResponsiveTablat")
-
 const total = document.getElementById("total");
 
 
@@ -165,12 +162,6 @@ if (Lot2.checked){
     options += "Lot 2 - Web Design + Création Web : 100€\n";
 }
 
-if (ResponsivePhone.checked){
-    options += "Responsive Téléphone : 50€/page\n";
-}
- if (ResponsiveTablat.checked){
-    options += "Responsive Tablette : 50€/page\n";
-}
 if (E1.checked){
     options += "Abonnement Entretiens réguliers mineures\n";
 }
@@ -180,7 +171,6 @@ if (E2.checked){
 if (E3.checked){
    options += "Sans abonnement les entretiens couterons 10€/h de travaux\n";
 }
-
 
     const destinataire = "pierre.alain.wester@alonrio.fr";
     const corps =

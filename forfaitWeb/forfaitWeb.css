@@ -24,7 +24,6 @@ header{
     height: 100px;
 }
 
-
 .HeaderRight{
     margin-left: auto;
     margin-right: 2em;
@@ -32,13 +31,10 @@ header{
     align-items: center;
 }
 
-ul li a{
-    text-decoration: underline;
+ul{
+    list-style: none;
 }
 
-a{
-    color: white;
-}
 h2{
     text-align: center;
 }
@@ -51,62 +47,20 @@ article{
     background-color: #181B1C;
     margin: 1em;
     padding: 1em;
-    
     border-radius: 15px;
     border-color: #292929;
-}
-
-button{
-    display: block;
-    margin: 1em auto;
-    padding: 1em 4em 1em 4em;
-    cursor: pointer;
-    transition: 0.25s;
-}
-
-button:hover{
-    transform: scale(1.05);
 }
 
 a{
+    color: white;
     text-decoration: none;
 }
-
-.BlueButton{
-    border: none;
-    outline: none;
-    border-radius: 15px;
-    border-color: #292929;
-    color: white;
-    font-size: 1em;
-    background: linear-gradient(40deg,#002125, #00565d, #002125);
-}
-
-.PinkButton{
-    border: none;
-    outline: none;
-    border-radius: 15px;
-    border-color: #292929;
-    color: white;
-    font-size: 1em;
-    background: linear-gradient(40deg, #38003b, #7c0069,#38003b);
-}
-
-.GreenButton{
-    border: none;
-    outline: none;
-    border-radius: 15px;
-    border-color: #292929;
-    color: white;
-    font-size: 1em;
-    background: linear-gradient(40deg,#00410f, #005014, #00410f);
-}
-
 
 main img{
     display: block;
     margin: 0 auto; 
 }
+
 .HeaderLeft h1{
     color: #00BFCC
 }
@@ -148,44 +102,20 @@ main img{
     grid-row: 2;
 }
 
-.Blue{
-    padding: 0.5em 1em 3em 1em;
-    background: linear-gradient(40deg,#002125, #00565d, #002125);
-}
-.Blue h1{
-    color:#00BFCC;
-}
-
-
-.Pink{
-    padding: 0.5em 1em 3em 1em;
-    background: linear-gradient(40deg, #38003b, #7c0069,#38003b);
-}
-.Pink h1{
-    color: #cc00ff;
-}
-
 .Green{
     padding: 0.5em 1em 3em 1em;
     background: linear-gradient(40deg,#00410f, #005014, #00410f);
 }
+
 .Green h1{
     color: #16FF58
 }
 
-
-.BlueTop, .PinkTop, .GreenTop{
+.GreenTop{
     margin: 1em 13em 1em 4em
 }
-.BlueTop h1, .PinkTop h1, .GreenTop h1{
+.GreenTop h1{
     margin: 1em 0 0 -1em;
-}
-
-.Contact{
-    background-color: #181B1C;
-    margin: 1em;
-    padding: 2em 6em 4em 6em;
-    border-radius: 15px;
 }
 
 .Contact h2{
@@ -246,12 +176,6 @@ footer{
 @media screen and (min-width: 1024px) {
     article{
         margin: 2em 3em;
-    }
-    .BlueTop{
-        margin: auto 20em auto 3em;
-    }
-    .PinkTop{
-        margin: auto 20em auto 3em;
     }
     .GreenTop{
         margin: auto 20em auto 3em;

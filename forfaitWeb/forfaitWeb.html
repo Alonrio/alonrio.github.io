@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alonrio</title>
+<link rel="stylesheet" href="forfaitWeb.css">
+</head>
+<body>
+    <header>
+        <div class="HeaderLeft">
+            <img src="../images/logoPNG.png">
+            <h1>Alonrio</h1>
+        </div>
+        <div class="HeaderRight">
+            <img src="#">
+            <img src="#">
+        </div>
+    </header>
+
+<main>
+<section class="Green">
+    <div class="GreenTop">
+        <h1>Nos Forfaits Web</h1>
+        <p>
+            Nous proposons des prix faible afin d’améliorer nos compétence et d’atteindre le plus de monde.<br>
+            Nous souhaitons faire en sorte que chaque personne (budget réduit comme élevé) puisse être satisfait de notre aide.<br>
+            Grace à nos forfait flexible vous avez le contrôle sur votre budget. Ajouter des options ou retirer les pour adapter nos services à vos budget.<br><br>
+            Sélectionnez vos options, en fonction de vos besoin. Chaque option augmentera le prix,
+            des forfaits personnaliser peuvent être fait avec des lots.<br>
+            Par exemple un SiteWeb avec un maquettage apportera une réduction sur le total des deux.<br><br>
+            (Nous ne proposons pas encore de service Backend)
+        </p>
+        <h4>Les prix afficher sont à but indicatif, ils peuvent évoluer en fonction de l'ampleur du projet !</h4>
+    </div>
+
+    <article>
+        <img src="#">
+        <h2>Web Design :</h2>
+        <ul>
+            <li><label><input type="checkbox" id="CG"> Création d'une Charte Graphique : 50€</label></li>
+            <li><label><input type="checkbox" id="Maquette"> Création d'une Maquette : 100€</label></li>
+        </ul>
+
+        <h2>Développement Web :</h2>
+        <ul>
+            <li><label><input type="radio" name="developpement" id="V1"> Création d'un site vitrine (1 à 3 pages) : 200€</label></li>
+            <li><label><input type="radio" name="developpement" id="V2"> Création d'un site vitrine (3 à 6 pages) : 300€</label></li>
+            <li><label><input type="radio" name="developpement" id="V3"> Création plus personnalisée : prix à définir.</label></li>
+            <li><label><input type="checkbox" id="NoMention"> Création d'un site sans mention Alonrio visible : forfait + 200€</label></li>
+        </ul>
+
+        <h2>Lot :</h2>
+        <ul>
+            <li><label><input type="checkbox" id="Lot1"> Charte Graphique + Maquette : 125€</label></li>
+            <li><label><input type="checkbox" id="Lot2"> Web Design + Création Web : 100€ + forfait Web</label></li>
+        </ul>
+        <h2>Entretiens :</h2>
+        <ul>
+            <li><label><input type="radio" id="E1" name="abonnepent"> Demande d'entretiens Mineures réguliers: 2€ 1er mois puis 5€/mois</label></li>
+            <li><label><input type="radio" id="E2" name="abonnepent"> Demande d'entretiens Majeures réguliers : 5€ 1er mois puis 10€/mois</label></li>
+            <li><label><input type="radio" id="E3" name="abonnepent"> Sans abonnement (entretiens sera à 10€/h sans abonnement)</label></li>
+        </ul>
+    </article>
+
+    <article class="Total">
+        <h2>Total : <span id="total">0</span>€</h2>
+        <p>Rappel : ne prenez pas le prix afficher comme le prix Officiel, nous mettons à dispositions cet outils pour vous donnez une estimation.</p>
+    </article>
+    <article class="Contact">
+        <h2>Nous envoyer votre commande :</h2>
+        <form id="ContactForm">
+            <input id="email" type="email" placeholder="Email" required>
+            <input id="name" type="text" placeholder="Nom + Prénom" required>
+            <input id="subject" type="text" placeholder="Objet" required>
+            <textarea id="message" placeholder="Message" required></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </article>
+</section>
+</main>
+
+<footer>
+    <div class="FooterLeft"><h4>WEBMASTER : Alonrio Pierr0tW</h4></div>
+    <div class="FooterRight">
+        <h5>© 2026 Alonrio, Tous droits réservés.</h5>
+        <a href="#"><h5>News du groupe</h5></a>
+    </div>
+</footer>
+
+<script src="forfaitWeb.js"></script>
+</body>
+</html>

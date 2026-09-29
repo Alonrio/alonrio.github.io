@@ -118,6 +118,15 @@ main img{
     margin: 1em 0 0 -1em;
 }
 
+
+.Total p{
+    padding: 1em 5em;
+}
+
+.Contact{
+    padding: 2em 5em;
+}
+
 .Contact h2{
     text-align: center;
     margin-top: 0em;
@@ -155,6 +164,19 @@ main img{
     background: linear-gradient(40deg,#00410f, #005014, #00410f);
     color: white;
     font-size: 1em;
+}
+
+button{
+    display: block;
+    margin: 1em auto;
+    padding: 1em 4em 1em 4em;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+
+button:hover{
+    transform: scale(1.05);
 }
 
 footer{

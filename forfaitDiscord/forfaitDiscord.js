@@ -121,43 +121,50 @@ function calculerTotal(){
 
     let prix = 0;
 
-    // LOTS / WEB DESIGN
-    if (Lot2.checked) {
-        // Lot 2 = Web Design + Création Web
-        // Le Web Design coûte seulement 100€
-        prix += 100;
-    } else if (Lot1.checked){
-        // Lot 1 = Charte + Maquette
-        prix += 125;
-    }else{
-        if (CG.checked){
-            prix += 50;
-        }
-        if (Maquette.checked){
-            prix += 100;
-        }
+    // LOTS
+    if(Lot1.checked){
+        prix += 27;
+    } else if(Lot2.checked){
+        prix += 50;
+    }else if(Lot3.checked){
+        prix += 102;
     }
 
-    // DÉVELOPPEMENT WEB
-    if (V1.checked) {
-        prix += 200;
+    // Dev Bot
+    if (B1.checked) {
+        prix += 25;
     }
-    if (V2.checked) {
-        prix += 300;
+    if (B2.checked) {
+        prix += 50;
+    }
+    if (B3.checked) {
+        prix += 100;
     }
     // RETRAIT DE LA MENTION
     if (NoMention.checked) {
-        prix += 200;
+        prix += 50;
+    }
+    if (NoMention2.checked) {
+        prix += 10;
+    }
+    if (Server.checked) {
+        prix += 5;
     }
     // AFFICHAGE
     total.textContent = prix;
 }
 
 // Event Listener
-V1.addEventListener("change", calculerTotal);
-V2.addEventListener("change", calculerTotal);
-V3.addEventListener("change", calculerTotal);
 NoMention.addEventListener("change", calculerTotal);
+NoMention2.addEventListener("change", calculerTotal);
+A1.addEventListener("change", calculerTotal);
+A2.addEventListener("change", calculerTotal);
+A3.addEventListener("change", calculerTotal);
+S1.addEventListener("change", calculerTotal);
+S2.addEventListener("change", calculerTotal);
+H1.addEventListener("change", calculerTotal);
+H2.addEventListener("change", calculerTotal);
+H3.addEventListener("change", calculerTotal);
 
 // CALCUL INITIAL
 
@@ -173,47 +180,94 @@ document.getElementById("ContactForm").addEventListener("submit", function(event
     const message = document.getElementById("message").value;
     let options = "";
 
-if (CG.checked){
-    options += "Charte Graphique : 50€\n";
+if(B1.checked || B2.checked || B3.checked || B4.checked){
+    options += "<------------------------------- Bot -------------------------------->"
 }
 
-if (Maquette.checked){
-    options += "Maquette : 100€\n";
+if (B1.checked){
+    options += "Bot : 25€\n";
 }
 
-if (V1.checked){
-    options += "Site vitrine 1 à 3 pages : 200€\n";
+if (B2.checked){
+    options += "Bot : 50€\n";
 }
 
-if (V2.checked){
-    options += "Site vitrine 3 à 6 pages : 300€\n";
+if (B3.checked){
+    options += "Bot : 100€\n";
 }
 
-if (V3.checked){
-    options += "Création plus personnalisée : prix à définir\n";
+if (B4.checked){
+    options += "Bot : Forfait Personnaliser\n";
+}
+
+if(Server.checked){
+    options += "<------------------------------ Server ----------------------------->"
+}
+
+if (Server.checked){
+    options += "Server : 5€\n";
+}
+
+if(H1.checked || H2.checked || H3.checked){
+    options += "<--------------------------- Hébergement -------------------------->"
+}
+
+if (H1.checked){
+    options += "Hebergement : 2€/mois\n";
+}
+if (H2.checked){
+    options += "Hebergement : 3€/mois\n";
+}
+if (H3.checked){
+    options += "Hebergement : 5€/mois\n";
+}
+
+if(NoMention.checked || NoMention2.checked){
+    options += "<-------------------- Supprimer / Sans mention --------------------->"
 }
 
 if (NoMention.checked){
-    options += "Retrait de la mention Alonrio : 200€\n";
+    options += "Retrait de la mention Alonrio Bot : 50€\n";
+}
+if (NoMention2.checked){
+    options += "Retrait de la mention Alonrio Server : 10€\n";
+}
+
+if(Lot1.checked || Lot2.checked || Lot3.checked ){
+    options += "<------------------------------- Lot ------------------------------->"
 }
 
 if (Lot1.checked){
-    options += "Lot 1 - Charte Graphique + Maquette : 125€\n";
+    options += "Lot 1 - Bot + Server : 27€\n";
 }
-
 if (Lot2.checked){
-    options += "Lot 2 - Web Design + Création Web : 100€\n";
+    options += "Lot 2 - Bot + Server : 52€\n";
+}
+if (Lot3.checked){
+    options += "Lot 2 - Bot + Server : 102€\n";
 }
 
-if (E1.checked){
-    options += "Abonnement Entretiens réguliers mineures\n";
+if(A1.checked || A2.checked || A3.checked || S1.checked || S2.checked){
+    options += "<--------------------------- Abonnement --------------------------->"
 }
-if (E2.checked){
-    options += "Abonnement Entretiens réguliers majeures\n";
+
+if (A1.checked){
+    options += "Abonnement Entretiens Bot réguliers mineures 5€/mois\n";
 }
-if (E3.checked){
-   options += "Sans abonnement les entretiens couterons 10€/h de travaux\n";
+if (A2.checked){
+    options += "Abonnement Entretiens Bot réguliers majeures 5€ premier mois puis 7€/mois\n";
 }
+if (A3.checked){
+    options += "Sans abonnement les entretiens Bot couterons 5€/h\n";
+}
+if (S1.checked){
+    options += "Abonnement Entretiens Server réguliers : 2€/mois\n";
+}
+if (S2.checked){
+   options += "Sans abonnement les entretiens server couterons 2€/h de travaux\n";
+}
+
+
 
     const destinataire = "pierre.alain.wester@alonrio.fr";
     const corps =

@@ -26,9 +26,8 @@ const total = document.getElementById("total");
 // LOT 1
 // ================================
 
-// Si Charte + Maquette sont cochées,
-// le Lot 1 se coche automatiquement.
 
+// le Lot 1 se coche automatiquement.
 function verifierLot1(){
     if(B1.checked && Server.checked && !Lot2.checked && !Lot3.checked){
         Lot1.checked = true;
@@ -55,7 +54,7 @@ function verifierLot3(){
 // Si on coche le Lot 1,
 // on coche automatiquement les deux options.
 Lot1.addEventListener("change", function (){
-    if (Lot1.checked) {
+    if(Lot1.checked){
         Server.checked = true;
         B2.checked = true;
         Lot2.checked = false;
@@ -67,7 +66,7 @@ Lot1.addEventListener("change", function (){
     calculerTotal();
 });
 Lot2.addEventListener("change", function (){
-    if (Lot1.checked) {
+    if(Lot1.checked){
         Server.checked = true;
         B2.checked = true;
         Lot1.checked = false;
@@ -79,9 +78,9 @@ Lot2.addEventListener("change", function (){
     calculerTotal();
 });
 Lot3.addEventListener("change", function (){
-    if (Lot1.checked) {
+    if(Lot3.checked){
         Server.checked = true;
-        B1.checked = true;
+        B3.checked = true;
         Lot1.checked = false;
         Lot2.checked = false;
     }else{
@@ -125,21 +124,28 @@ function calculerTotal(){
     if(Lot1.checked){
         prix += 27;
     } else if(Lot2.checked){
-        prix += 50;
+        prix += 52;
     }else if(Lot3.checked){
         prix += 102;
     }
 
     // Dev Bot
-    if (B1.checked) {
-        prix += 25;
+
+    if(!(Lot1.checked || Lot2.checked || Lot3.checked)){
+        if (B1.checked) {
+            prix += 25;
+        }
+        if (B2.checked) {
+            prix += 50;
+        }
+        if (B3.checked) {
+            prix += 100;
+        }
+        if (Server.checked) {
+            prix += 5;
+        }
     }
-    if (B2.checked) {
-        prix += 50;
-    }
-    if (B3.checked) {
-        prix += 100;
-    }
+
     // RETRAIT DE LA MENTION
     if (NoMention.checked) {
         prix += 50;
@@ -147,9 +153,7 @@ function calculerTotal(){
     if (NoMention2.checked) {
         prix += 10;
     }
-    if (Server.checked) {
-        prix += 5;
-    }
+
     // AFFICHAGE
     total.textContent = prix;
 }

@@ -87,7 +87,10 @@ main img{
 }
 
 .Contact{
-    padding: 2em 5em;
+    background-color: #181B1C;
+    border-radius: 15px;
+    padding-left: 10em;
+    padding-right: 10em;
 }
 
 .Contact h2{

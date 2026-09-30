@@ -4,6 +4,7 @@ body{
     color: white;
     margin: 0;
     padding-top: 80px;
+    overflow-x: hidden;
 }
 
 header{
@@ -107,11 +108,16 @@ a{
     background: linear-gradient(40deg,#00410f, #005014, #00410f);
 }
 
-
 main img{
     display: block;
     margin: 0 auto; 
+    width: 30%;
 }
+
+.Triple img{
+    width: 20%;
+}
+
 .HeaderLeft h1{
     color: #00BFCC
 }
@@ -129,8 +135,12 @@ main img{
 
 .Left{
     grid-column: 1;
+    padding-left: 10em;
+    margin-left: -10em;
 }
 .Right{
+    margin-right: -10em;
+    padding-right: 10em;
     grid-column: 2;
 }
 
@@ -178,7 +188,6 @@ main img{
     color: #16FF58
 }
 
-
 .BlueTop, .PinkTop, .GreenTop{
     margin: 1em 13em 1em 4em
 }
@@ -189,6 +198,8 @@ main img{
 .Contact{
     background-color: #181B1C;
     border-radius: 15px;
+    padding-left: 10em;
+    padding-right: 10em;
 }
 
 .Contact h2{
@@ -235,6 +246,8 @@ footer{
     grid-template-columns: 1fr 1fr;
     margin: 1em;
 }
+
+
 
 .FooterLeft{
     grid-column: 1;

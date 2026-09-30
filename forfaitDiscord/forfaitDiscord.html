@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alonrio</title>
+<link rel="stylesheet" href="forfaitDiscord.css">
+</head>
+<body>
+    <header>
+        <div class="HeaderLeft">
+            <a href="../index.html"><img src="../images/logoPNG.png"></a>
+            <h1>Alonrio</h1>
+        </div>
+        <div class="HeaderRight">
+            <img src="#">
+            <img src="#">
+        </div>
+    </header>
+
+<main>
+<section class="Green">
+    <div class="GreenTop">
+        <h1>Nos Forfaits Discord</h1>
+        <p>
+            Nous proposons des prix faible afin d’améliorer nos compétence et d’atteindre le plus de monde. <br>
+
+            Nous souhaitons faire en sorte que chaque personne (budget réduit comme élevé) puisse être satisfait de notre aide.<br>
+            
+            Grace à nos forfait flexible vous avez le contrôle sur votre budget. Ajouter des options ou retirer les pour adapter nos services à vos budget. <br>
+            
+            Sélectionnez vos options, en fonction de vos besoin. Chaque option augmentera le prix, des forfaits personnaliser peuvent être fait avec des lots. 
+            Par exemple un Bot Discord + création de serveur vous obtenez une réduction.<br>
+        </p>
+        <h4>Les prix afficher sont à but indicatif, ils peuvent évoluer en fonction de l'ampleur du projet !</h4>
+    </div>
+
+    <article>
+        <img src="#">
+        <h2>Bot Discord :</h2>
+        <ul>
+            <li><label><input type="radio" id="B1" name="Bot"> Création d'un "petit" bot : 25€</label></li>
+            <li><label><input type="radio" id="B2" name="Bot"> Création du "moyen" bot : 50€</label></li>
+            <li><label><input type="radio" id="B3" name="Bot"> Création du "Grand" bot : 100€</label></li>
+            <li><label><input type="radio" id="B4" name="Bot"> Création d'un bot Forfait personnaliser : à définir</label></li>
+            <li><label><input type="checkbox" id="NoMention"> Création d'un Bot sans mention Alonrio visible : forfait +50€</label></li>
+        </ul>
+
+        <h2>Serveur Discord :</h2>
+        <ul>
+            <li><label><input type="radio" name="developpement" id="Server"> Création du Serveur 5€</label></li>
+            <li><label><input type="checkbox" id="NoMention2"> Création d'un serveur sans mention Alonrio visible : forfait +10€</label></li>
+        </ul>
+
+        <h2>Lot :</h2>
+        <ul>
+            <li><label><input type="checkbox" id="Lot1"> Bot mineur + Serveur : 27€</label></li>
+            <li><label><input type="checkbox" id="Lot2"> Bot moyen + Serveur : 52€</label></li>
+            <li><label><input type="checkbox" id="Lot3"> Bot Grand + Serveur : 102€</label></li>
+        </ul>
+        <h2>Entretiens :</h2>
+        <ul>
+            <li><label><input type="radio" id="A1" name="abonnementBot"> Demande d'entretiens Mineur Bot Discord : 5€/mois </label></li>
+            <li><label><input type="radio" id="A2" name="abonnementBot"> Demande d'entretiens Majeures réguliers bot discord : 5€ 1er mois puis 6€/mois</label></li>
+            <li><label><input type="radio" id="A3" name="abonnementBot"> Sans abonnement (entretiens sera à 5€/h sans abonnement)</label></li>
+            <li><label><input type="radio" id="S1" name="abonnementServ"> Demande d'entretiens Serveur Discord : 2€/mois</label></li>
+            <li><label><input type="radio" id="S2" name="abonnementServ"> Sans abonnement</label></li>
+        </ul>
+    </article>
+
+    <article class="Total">
+        <h2>Total : <span id="total">0</span>€</h2>
+        <p>Rappel : ne prenez pas le prix afficher comme le prix Officiel, nous mettons à dispositions cet outils pour vous donnez une estimation.</p>
+    </article>
+    <article class="Contact">
+        <h2>Nous envoyer votre commande :</h2>
+        <form id="ContactForm">
+            <input id="email" type="email" placeholder="Email" required>
+            <input id="name" type="text" placeholder="Nom + Prénom" required>
+            <input id="subject" type="text" placeholder="Objet" required>
+            <textarea id="message" placeholder="Message" required></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </article>
+</section>
+</main>
+
+<footer>
+    <div class="FooterLeft"><h4>WEBMASTER : Alonrio Pierr0tW</h4></div>
+    <div class="FooterRight">
+        <h5>© 2026 Alonrio, Tous droits réservés.</h5>
+        <a href="#"><h5>News du groupe</h5></a>
+    </div>
+</footer>
+
+<script src="forfaitDiscord.js"></script>
+</body>
+</html>

@@ -1,18 +1,23 @@
-const CG = document.getElementById("CG");
-const Maquette = document.getElementById("Maquette");
-
-const V1 = document.getElementById("V1");
-const V2 = document.getElementById("V2");
-const V3 = document.getElementById("V3");
+const B1 = document.getElementById("B1");
+const B2 = document.getElementById("B2");
+const B3 = document.getElementById("B3");
+const B4 = document.getElementById("B4");
 
 const NoMention = document.getElementById("NoMention");
+const NoMention2 = document.getElementById("NoMention2");
+
+const Server = document.getElementById("Server");
 
 const Lot1 = document.getElementById("Lot1");
 const Lot2 = document.getElementById("Lot2");
+const Lot3 = document.getElementById("Lot3");
 
-const E1 = document.getElementById("E1")
-const E2 = document.getElementById("E2")
-const E3 = document.getElementById("E3")
+const A1 = document.getElementById("A1");
+const A2 = document.getElementById("A2");
+const A3 = document.getElementById("A3");
+
+const S1 = document.getElementById("S1");
+const S2 = document.getElementById("S2");
 
 const total = document.getElementById("total");
 
@@ -25,47 +30,85 @@ const total = document.getElementById("total");
 // le Lot 1 se coche automatiquement.
 
 function verifierLot1(){
-    if(CG.checked && Maquette.checked && !Lot2.checked){
+    if(B1.checked && Server.checked && !Lot2.checked && !Lot3.checked){
         Lot1.checked = true;
     }else{
         Lot1.checked = false;
     }
 }
+function verifierLot2(){
+    if(B2.checked && Server.checked && !Lot1.checked && !Lot3.checked){
+        Lot2.checked = true;
+    }else{
+        Lot2.checked = false;
+    }
+}
+function verifierLot3(){
+    if(B3.checked && Server.checked && !Lot1.checked && !Lot2.checked){
+        Lot3.checked = true;
+    }else{
+        Lot3.checked = false;
+    }
+}
+
+
 // Si on coche le Lot 1,
 // on coche automatiquement les deux options.
 Lot1.addEventListener("change", function (){
     if (Lot1.checked) {
-        CG.checked = true;
-        Maquette.checked = true;
+        Server.checked = true;
+        B2.checked = true;
+        Lot2.checked = false;
+        Lot3.checked = false;
     }else{
-        CG.checked = false;
-        Maquette.checked = false;
+        Server.checked = false;
+        B1.checked = false;
     }
     calculerTotal();
 });
-
 Lot2.addEventListener("change", function (){
-    if (Lot2.checked) {
-        Lot1.checked = true;
-        CG.checked = true;
-        Maquette.checked = true;
-    } else {
-
+    if (Lot1.checked) {
+        Server.checked = true;
+        B2.checked = true;
         Lot1.checked = false;
-        CG.checked = false;
-        Maquette.checked = false;
+        Lot3.checked = false;
+    }else{
+        Server.checked = false;
+        B2.checked = false;
     }
     calculerTotal();
-
 });
-// Quand on change Charte graphique
-CG.addEventListener("change", function (){
+Lot3.addEventListener("change", function (){
+    if (Lot1.checked) {
+        Server.checked = true;
+        B1.checked = true;
+        Lot1.checked = false;
+        Lot2.checked = false;
+    }else{
+        Server.checked = false;
+        B3.checked = false;
+    }
+    calculerTotal();
+});
+
+// Quand on change un Bot
+B1.addEventListener("change", function (){
     verifierLot1();
     calculerTotal();
 });
-// Quand on change Maquette
-Maquette.addEventListener("change", function (){
+B2.addEventListener("change", function (){
+    verifierLot2();
+    calculerTotal();
+});
+B3.addEventListener("change", function (){
+    verifierLot3();
+    calculerTotal();
+});
+// Quand on change Server
+Server.addEventListener("change", function (){
     verifierLot1();
+    verifierLot2();
+    verifierLot3();
     calculerTotal();
 });
 

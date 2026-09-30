@@ -64,6 +64,11 @@ button{
     transition: 0.25s;
 }
 
+section img {
+    padding: 1em;
+    width: 50%;
+}
+
 button:hover{
     transform: scale(1.05);
 }
@@ -98,7 +103,7 @@ a{
     border-radius: 15px;
     border-color: #292929;
     color: white;
-    font-size: 1em;
+    font-size: 0.9em;
     background: linear-gradient(40deg,#00410f, #005014, #00410f);
 }
 
@@ -240,7 +245,7 @@ footer{
     font-size: 11px;
     text-align: end;
 }
-/* ----------------------------------------------------------------------------- */
+/* --------------------------------------responsive--------------------------------------- */
 @media screen and (min-width: 1024px) {
     article{
         margin: 2em 3em;
@@ -258,8 +263,57 @@ footer{
     main{
         font-size: 1.25em;
     }
+
+    .GreenButton{
+        font-size: 1em;
+    }
+
+
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-    /* CSS pour les tablettes */
+    
 }
+
+@media screen and (max-width: 768px){
+    body{
+        font-size: 75%;
+    }
+    body{
+        padding-top: 100px;
+    }
+
+    article{
+        margin: 1em;
+        padding: 0.4em;
+    }
+
+    img{
+        width: 50%;
+    }
+
+    .Duo{
+        display: block;
+    }
+
+    .Triple img{
+        width: 25%;
+    }
+
+    .Transition, .Triple{
+        font-size: 70%;
+    }
+
+    .BlueTop, .PinkTop, .GreenTop{
+        margin: auto;
+        margin-left: 1em;
+    }
+
+    .Contact{
+        padding: 2em;
+    }
+    .Contact input, .Contact textarea{
+        font-size: 70%;
+    }
+}
+

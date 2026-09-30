@@ -65,43 +65,6 @@ main img{
     color: #00BFCC
 }
 
-.Transition{
-    padding: 0.5em 1em 0.5em 1em;
-    margin: 1em 4em 1em 4em;
-    border: #292929 ;
-}
-
-.Duo{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.Left{
-    grid-column: 1;
-}
-.Right{
-    grid-column: 2;
-}
-
-
-.Triple{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.TripleRight{
-    grid-column: 1;
-    grid-row: 2;
-}
-.TripleCenter{
-    grid-column: 2;
-    grid-row: 2;
-}
-.TripleLeft{
-    grid-column: 3;
-    grid-row: 2;
-}
-
 .Green{
     padding: 0.5em 1em 3em 1em;
     background: linear-gradient(40deg,#00410f, #005014, #00410f);
@@ -208,6 +171,42 @@ footer{
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    /* CSS pour les tablettes */
+@media screen and (max-width: 768px){
+    body{
+        font-size: 75%;
+    }
+    body{
+        padding-top: 100px;
+    }
+
+    article{
+        margin: 0.5em;
+        padding: 0.4em;
+    }
+
+    img{
+        width: 50%;
+    }
+
+    .GreenTop{
+        margin: auto;
+        margin-left: 1em;
+    }
+
+    .Contact{
+        padding: 2em;
+    }
+    .Contact input, .Contact textarea{
+        font-size: 70%;
+    }
+    ul{
+        font-size: 90%;
+        padding: 1em;
+    }
+    .Total{
+        padding: auto 0;
+    }
+    .Total p{
+        padding: 1em 1em;
+    }
 }

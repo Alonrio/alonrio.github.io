@@ -265,19 +265,6 @@ document.getElementById("ContactForm").addEventListener("submit", function(event
         options += "<------------------------------- Bot -------------------------------->\n";
     }
 
-    if(B1.checked) options += "Bot : 25€\n";
-    if(B2.checked) options += "Bot : 50€\n";
-    if(B3.checked) options += "Bot : 100€\n";
-    if(B4.checked) options += "Bot : Forfait Personnaliser\n";
-
-
-    if(Server.checked){
-        options += "<------------------------------ Server ----------------------------->\n";
-    }
-
-    if(Server.checked) options += "Server : 5€\n";
-
-
     if(H1.checked || H2.checked || H3.checked){
         options += "<--------------------------- Hébergement -------------------------->\n";
     }
@@ -285,23 +272,6 @@ document.getElementById("ContactForm").addEventListener("submit", function(event
     if(H1.checked) options += "Hebergement : 2€/mois\n";
     if(H2.checked) options += "Hebergement : 3€/mois\n";
     if(H3.checked) options += "Hebergement : 5€/mois\n";
-
-
-    if(NoMention.checked || NoMention2.checked){
-        options += "<-------------------- Supprimer / Sans mention --------------------->\n";
-    }
-
-    if(NoMention.checked) options += "Retrait de la mention Alonrio Bot : 50€\n";
-    if(NoMention2.checked) options += "Retrait de la mention Alonrio Server : 10€\n";
-
-
-    if(Lot1.checked || Lot2.checked || Lot3.checked){
-        options += "<------------------------------- Lot ------------------------------->\n";
-    }
-
-    if(Lot1.checked) options += "Lot 1 - Bot + Server : 27€\n";
-    if(Lot2.checked) options += "Lot 2 - Bot + Server : 52€\n";
-    if(Lot3.checked) options += "Lot 3 - Bot + Server : 102€\n";
 
 
     if(A1.checked || A2.checked || A3.checked || S1.checked || S2.checked){

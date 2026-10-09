@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(231, 231, 231);
+    color: black;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+h1{
+    text-align: center;
+    font-size: 3em;
+}
+
+.HeaderTop {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: -1em 0;
+}
+
+.HeaderTop .HeaderLeft img {
+    width: 100px;
+    height: 100px;
+}
+
+.HeaderTop .HeaderLeft {
+    display: flex;
+    align-items: center;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.HeaderTop .HeaderLeft h1 {
+    font-size: 1em;
+}
+
+.HeaderTop .HeaderMain {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 1.5em;
+}
+
+.HeaderBottom {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    position: sticky;
+    top: 1em;
+    z-index: 1000;
+    background: transparent;
+}
+
+.HeaderBottom button {
+    width: 200px;
+    max-width: 200px;
+
+    margin: 0;
+    font-size: 1.5em;
+    background: linear-gradient(40deg, #017a87, #00565d, #0098a9);
+    color: #ffffff;
+    border: 2px solid #024449;
+    border-radius: 10px;
+    padding: 0.1em 1em;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+button:hover {
+    transform: scale(1.25);
+}
+
+hr {
+    width: 100%;
+    border: none;
+    border-top: 2px solid #014a53;
+    color: #065159;
+    margin: 0;
+}
+
+header {
+    color: white;
+    background: linear-gradient(40deg, #017a87, #00565d, #0098a9);
+}
+
+.HeaderBottom .Use {
+    border-color: #00cbda;
+    border-width: 3px;
+}
+
+main {
+    color: black;
+    padding: 1em;
+    background-color: #0098a9;
+}
+
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: linear-gradient(40deg, #017a87, #00565d, #0098a9);
+}
+
+footer hr {
+    grid-column: 1 / 3;
+    width: 100%;
+    border-top: 2px solid #014a53;
+    color: #065159;
+    margin: 0;
+}
+
+.FooterLeft {
+    grid-column: 1;
+    font-size: 10px;
+    padding-left: 1em;
+}
+
+.FooterRight {
+    grid-column: 2;
+    font-size: 11px;
+    text-align: end;
+    padding-right: 1em;
+}

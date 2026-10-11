@@ -33,6 +33,7 @@ h1{
     font-size: 1em;
 }
 
+
 .HeaderTop .HeaderMain {
     grid-column: 2;
     grid-row: 1;
@@ -40,26 +41,28 @@ h1{
 }
 
 .HeaderBottom {
+    grid-column: 1 / 4;
+    grid-row: 2;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 80px;
-    position: sticky;
-    top: 1em;
-    z-index: 1000;
-    background: transparent;
+    width: 100%;
+    padding: 10px 0;
+    box-sizing: border-box;
+    background: linear-gradient(40deg, #a17223, #d79522, #a17223);
+    border: 2px solid #ffb63a;
 }
 
-.HeaderBottom button {
+.HeaderBottom a {
     width: 200px;
     max-width: 200px;
-
     margin: 0;
     font-size: 1.5em;
-    background: linear-gradient(40deg, #017a87, #00565d, #0098a9);
-    color: #ffffff;
-    border: 2px solid #024449;
-    border-radius: 10px;
+    color: white;
     padding: 0.1em 1em;
+    text-align: center;
+    text-decoration: none;
     cursor: pointer;
     transition: 0.25s;
 }
@@ -78,18 +81,13 @@ hr {
 
 header {
     color: white;
-    background: linear-gradient(40deg, #017a87, #00565d, #0098a9);
-}
-
-.HeaderBottom .Use {
-    border-color: #00cbda;
-    border-width: 3px;
+    background: linear-gradient(40deg, #d6d6d6, #9a9a9a, #d6d6d6);
 }
 
 main {
-    color: black;
+    color: white;
     padding: 1em;
-    background-color: #0098a9;
+background-color: white;
 }
 
 footer {

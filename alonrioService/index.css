@@ -16,11 +16,15 @@ header{
     width: 100%;
     z-index: 1000;
 }
-.HeaderLeft{
+
+.HeaderLeft a{
     display: flex;
     align-items: center;
 }
-.HeaderLeft img{
+.HeaderLeft a h1{
+    font-size: 1.5em;
+}
+.HeaderLeft a img{
     width: 100px;
     height: 100px;
 }
@@ -137,9 +141,12 @@ main img{
     border: #292929 ;
 }
 
-.Duo{
+.center{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+.Right-Forfait{
+    grid-column: 2;
 }
 
 .Left{

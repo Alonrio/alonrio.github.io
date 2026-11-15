@@ -85,7 +85,7 @@ header {
 }
 
 main {
-    color: white;
+    color: rgb(0, 0, 0);
     padding: 1em;
 background-color: white;
 }

@@ -15,7 +15,7 @@ header{
     width: 100%;
     z-index: 1000;
 }
-.HeaderLeft{
+.HeaderLeft a{
     display: flex;
     align-items: center;
 }
@@ -65,8 +65,9 @@ main img{
     margin: 0 auto; 
 }
 
-.HeaderLeft h1{
-    color: #00BFCC
+.HeaderLeft a h1{
+    color: #00BFCC;
+    font-size: 1.5em;
 }
 
 .Green{

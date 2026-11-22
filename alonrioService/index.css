@@ -44,6 +44,11 @@ ul li a{
 a{
     color: white;
 }
+
+h1{
+   margin-left: 1em;
+}
+
 h2{
     text-align: center;
 }

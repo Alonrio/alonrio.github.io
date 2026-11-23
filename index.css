@@ -1,14 +1,20 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(0, 0, 0);
-    color: black;
+    color: rgb(255, 255, 255);
     margin: 0;
     overflow-x: hidden;
 }
 
+/* ------------------------------- HEADER ----------------------------- */
+
 header {
     color: white;
-    background: linear-gradient(40deg, #c5c5c5, #9a9a9a, #c5c5c5);
+    background: linear-gradient(40deg, #0036bd, #3c0ee0, #0036bd);
+    position: sticky;
+    top: 0;
+    display: flex;
+    padding: 1em;
 }
 
 .HeaderTop {
@@ -18,8 +24,8 @@ header {
 }
 
 .HeaderTop .HeaderLeft img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
 }
 
 .HeaderTop .HeaderLeft {
@@ -30,7 +36,7 @@ header {
 }
 
 .HeaderTop .HeaderLeft h1 {
-    font-size: 1em;
+    font-size: 1.5em;
 }
 .HeaderTop .HeaderLeft{
     color: white;
@@ -43,48 +49,33 @@ header {
     font-size: 1.5em;
 }
 
-.HeaderBottom {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+.HeaderRight {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
     gap: 20px;
-    width: 100%;
-    padding: 10px 0;
-    box-sizing: border-box;
-    background: linear-gradient(40deg, #c5c5c5, #9a9a9a, #c5c5c5);
-    border: 2px solid #55524d;
+    align-items: end;
+    padding: 10px 1em;
+    margin-left: auto;
 }
 
-.HeaderBottom a {
-    width: 200px;
-    max-width: 200px;
-    margin: 0;
-    font-size: 1.5em;
+.HeaderRight a {
+    font-size: 1em;
     color: white;
-    padding: 0.1em 1em;
-    text-align: center;
+    text-align: end;
     text-decoration: none;
     cursor: pointer;
     transition: 0.25s;
 }
 
-h1{
-    text-align: center;
-    font-size: 3em;
-}
-h2{
-    text-align: left;
-    font-size: 2em;
-}
+/* --------------------------- Les bases ------------------------ */
+
 
 main {
-    color: rgb(0, 0, 0);
-    background: linear-gradient(40deg, #dddddd, #e0e0e0, #dddddd);
+    color: rgb(255, 255, 255);
+    background: linear-gradient(40deg, #0036bd, #7f5dfa, #0036bd);
     padding: 1em 0;
     font-size: 20px;
+    background-size: 400% 400%;
+    animation: gradientWave 5s ease infinite;
 }
 
 main hr {
@@ -94,13 +85,62 @@ main hr {
     color: #55524d;
 }
 
-
-
+h1{
+    text-align: center;
+    font-size: 3em;
+}
+h2{
+    text-align: left;
+    font-size: 2em;
+    padding-left: 0.5em;
+}
+h3{
+    padding-left: 1em;
+}
+h4{
+    font-size: 1.5em;
+}
 section{
+    background: linear-gradient(40deg, #0036bd, #3c0ee0, #0036bd);
+    animation: gradientWave 1s ease infinite;
+    padding : 5px 0 5px 1em;
+}
+article p{
+    padding-left: 1em;
+}
+
+/* -------------- INDIVIDUEL --------------------*/
+
+.About{
     padding: 0 1em;
 }
-section p{
-    padding: 0 5em 0 1em;
+.About p{
+    padding: 0 30% 0 2em;
+}
+.About h2{
+    padding-left: 0;
+}
+.Skylonrio .LogoSkylonrio{
+    float: right;
+    width: 20%;
+    height: auto;
+    margin:0 20px;
+}
+
+.Skylonrio p{
+    margin-right: 5em;
+}
+.Cave{
+    width: 26%;
+    height: auto;
+    margin:0 20px;
+}
+.TrioImage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
 }
 
 .InsideHR{
@@ -108,29 +148,15 @@ section p{
     padding: 1em 1em;
     text-align: center;
     font-size: 20px;
-    background: linear-gradient(40deg, #c5c5c5, #9a9a9a, #c5c5c5);
+    background: linear-gradient(40deg, #0036bd, #3c0ee0, #0036bd);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*v--------------------- FOOTER -------------------*/
 
 footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background: linear-gradient(40deg, #c5c5c5, #9a9a9a, #c5c5c5);
+    background: linear-gradient(40deg, #0036bd, #3c0ee0, #0036bd);
     color: white;
 }
 
@@ -159,3 +185,18 @@ footer a{
     color: rgb(255, 255, 255);
 }
 
+/* ---------- ANIMATION ------------*/
+
+@keyframes gradientWave {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+} 
